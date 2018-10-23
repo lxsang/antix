@@ -72,17 +72,36 @@ cd ../gcc-build
  rm -r gcc-6.2.0 gcc-build
 
 # musl
+#cd ~/antix/source
+#tar xvf musl-1.1.16.tar.gz 
+#cd musl-1.1.16/
+#./configure \
+#  CROSS_COMPILE=${ANTIX_TARGET}- \
+#  --prefix=/ \
+#  --target=${ANTIX_TARGET}
+#make -j 8
+#DESTDIR=${ANTIX_TOOLS}/${ANTIX_TARGET} make install
+#cd ~/antix/source
+#rm -r musl-1.1.16
+
+# 	glibc-2.28.tar.xz
 cd ~/antix/source
-tar xvf musl-1.1.16.tar.gz 
-cd musl-1.1.16/
-./configure \
-  CROSS_COMPILE=${ANTIX_TARGET}- \
-  --prefix=/ \
-  --target=${ANTIX_TARGET}
+tar xvf glibc-2.28.tar.xz
+cd glibc-2.28
+mkdir -v ../libc-build
+cd ../libc-build
+../glibc-2.28/configure                  \
+      --prefix=${ANTIX_TOOLS}                    \
+      --host=${ANTIX_HOST}                   \
+      --build=$(../glibc-2.28/scripts/config.guess) \
+      --enable-kernel=3.2             \
+      --with-headers=${ANTIX_TOOLS}/include      \
+      libc_cv_forced_unwind=yes          \
+      libc_cv_c_cleanup=yes
 make -j 8
-DESTDIR=${ANTIX_TOOLS}/${ANTIX_TARGET} make install
+make install
 cd ~/antix/source
-rm -r musl-1.1.16
+rm -r glibc-2.28 libc-build
 
 # gcc 2nd
 cd ~/antix/source
