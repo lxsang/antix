@@ -88,12 +88,12 @@ cd ../gcc-build
 cd ~/antix/source
 tar xvf glibc-2.28.tar.xz
 cd glibc-2.28
-mkdir -v ../libc-build
-cd ../libc-build
-../glibc-2.28/configure                  \
+mkdir libc-build
+cd libc-build
+../configure                  \
       --prefix=${ANTIX_TOOLS}                    \
       --host=${ANTIX_HOST}                   \
-      --build=$(../glibc-2.28/scripts/config.guess) \
+      --build=$(../scripts/config.guess) \
       --enable-kernel=3.2             \
       --with-headers=${ANTIX_TOOLS}/${ANTIX_TARGET}/include      \
       libc_cv_forced_unwind=yes          \
@@ -101,7 +101,7 @@ cd ../libc-build
 make -j 8
 make install
 cd ~/antix/source
-rm -r glibc-2.28 libc-build
+rm -r glibc-2.28
 
 # gcc 2nd
 cd ~/antix/source
