@@ -95,7 +95,7 @@ cd ../libc-build
       --host=${ANTIX_HOST}                   \
       --build=$(../glibc-2.28/scripts/config.guess) \
       --enable-kernel=3.2             \
-      --with-headers=${ANTIX_TOOLS}/include      \
+      --with-headers=${ANTIX_TOOLS}/${ANTIX_TARGET}/include      \
       libc_cv_forced_unwind=yes          \
       libc_cv_c_cleanup=yes
 make -j 8
