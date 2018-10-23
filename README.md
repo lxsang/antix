@@ -35,6 +35,7 @@ export ANTIX_FPU=vfp
 export ANTIX_HOST=$(echo ${MACHTYPE} | sed "s/-[^-]*/-cross/")
 PATH=${ANTIX_TOOLS}/bin:/bin:/usr/bin
 mkdir -p ${ANTIX_TOOLS}/${ANTIX_TARGET}
+ln -sfv . ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr
 ```
 
 ## Building the tools chain
