@@ -90,13 +90,13 @@ tar xvf glibc-2.28.tar.xz
 cd glibc-2.28
 mkdir libc-build
 cd libc-build
-../configure                  \
-      --prefix=${ANTIX_TOOLS}                    \
-      --host=${ANTIX_HOST}                   \
+../configure \
+      --prefix=${ANTIX_TOOLS} \
+      --host=${ANTIX_HOST} \
       --build=$(../scripts/config.guess) \
-      --enable-kernel=3.2             \
-      --with-headers=${ANTIX_TOOLS}/${ANTIX_TARGET}/include      \
-      libc_cv_forced_unwind=yes          \
+      --enable-kernel=3.2 \
+      --with-headers=${ANTIX_TOOLS}/${ANTIX_TARGET}/include \
+      libc_cv_forced_unwind=yes \
       libc_cv_c_cleanup=yes
 make -j 8
 make install
