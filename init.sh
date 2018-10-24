@@ -1,15 +1,16 @@
 #! /bin/bash
 set -e
-mkdir -p ~/antix/{source,rootfs,boot,cross-tools}
+mkdir -p ~/antix/{source,rootfs,boot,cross-tools,pkg-build}
 # now grab the source
 cd ~/antix/source
 wget http://ftp.gnu.org/gnu/binutils/binutils-2.27.tar.bz2
 wget http://busybox.net/downloads/busybox-1.24.2.tar.bz2
 wget http://sethwklein.net/iana-etc-2.30.tar.bz2
 wget http://www.kernel.org/pub/linux/kernel/v4.x/linux-4.9.22.tar.xz
-#wget http://www.musl-libc.org/releases/musl-1.1.16.tar.gz
+wget http://www.musl-libc.org/releases/musl-1.1.16.tar.gz
 # switch to glib
 wget http://mirror.ibcp.fr/pub/gnu/libc/glibc-2.28.tar.xz
+wget http://mirror.ibcp.fr/pub/gnu/libc/glibc-ports-2.8.tar.gz
 wget http://gcc.gnu.org/pub/gcc/releases/gcc-6.2.0/gcc-6.2.0.tar.bz2
 wget http://ftp.gnu.org/gnu/gmp/gmp-6.1.1.tar.bz2
 wget https://ftp.gnu.org/gnu/mpc/mpc-1.0.3.tar.gz
@@ -22,3 +23,5 @@ wget --no-check-certificate http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux
 # patch
 wget http://patches.clfs.org/embedded-dev/iana-etc-2.30-update-2.patch
 wget http://patches.clfs.org/embedded-dev/netplug-1.2.9.2-fixes-1.patch
+
+# other packag

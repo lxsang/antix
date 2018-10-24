@@ -71,38 +71,79 @@ cd ../gcc-build
  cd ~/antix/source
  rm -r gcc-6.2.0 gcc-build
 
-# musl
-#cd ~/antix/source
-#tar xvf musl-1.1.16.tar.gz 
-#cd musl-1.1.16/
-#./configure \
-#  CROSS_COMPILE=${ANTIX_TARGET}- \
-#  --prefix=/ \
-#  --target=${ANTIX_TARGET}
-#make -j 8
-#DESTDIR=${ANTIX_TOOLS}/${ANTIX_TARGET} make install
-#cd ~/antix/source
-#rm -r musl-1.1.16
+if [ "$ANTIX_LIBC" = "musl" ]; then
+    # musl
+    cd ~/antix/source
+    tar xvf musl-1.1.16.tar.gz 
+    cd musl-1.1.16/
+    ./configure \
+      CROSS_COMPILE=${ANTIX_TARGET}- \
+      --prefix=/ \
+      --target=${ANTIX_TARGET}
+    make -j 8
+    DESTDIR=${ANTIX_TOOLS}/${ANTIX_TARGET} make install
+    cd ~/antix/source
+    rm -r musl-1.1.16
+else
+    # 	glibc-2.28.tar.xz
+    cd ~/antix/source
+    tar xvf glibc-2.28.tar.xz
+    cd glibc-2.28
+    tar xvf ../glibc-ports-2.8.tar.gz
+    mv glibc-ports-2.8 ports
+    mkdir -v ../glibc-build
+    cd ../glibc-build
+    echo "libc_cv_forced_unwind=yes" > config.cache
+    echo "libc_cv_c_cleanup=yes" >> config.cache
+    echo "libc_cv_arm_tls=yes" >> config.cache
+    echo "install_root=${ANTIX_TOOLS}/${ANTIX_TARGET}" > configparms
+    CC=gcc ../glibc-2.28/configure --prefix=/usr \
+        --host=${ANTIX_TARGET} --build=${ANTIX_HOST} \
+        --with-headers=${ANTIX_TOOLS}/${ANTIX_TARGET}/include --cache-file=config.cache
+    make install-headers
+    #touch ${ANTIX_TOOLS}/${ANTIX_TARGET}/include/gnu/stubs.h
+    #install -dv ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/include/bits
+    #cp -v bits/stdio_lim.h ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/include/bits
+    #cp -v ../glibc-2.28/ports/sysdeps/unix/sysv/linux/arm/nptl/bits/pthreadtypes.h \
+    #    ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/include/bits
+    cd ~/antix/source
+    rm -r glibc-2.28 glibc-build
 
-# 	glibc-2.28.tar.xz
-cd ~/antix/source
-tar xvf glibc-2.28.tar.xz
-cd glibc-2.28
-mkdir libc-build
-cd libc-build
-../configure \
-      --prefix=${ANTIX_TOOLS} \
-      --host=${ANTIX_HOST} \
-      --build=$(../scripts/config.guess) \
-      --enable-kernel=3.2 \
-      --with-headers=${ANTIX_TOOLS}/${ANTIX_TARGET}/include \
-      libc_cv_forced_unwind=yes \
-      libc_cv_c_cleanup=yes
-make -j 8
-make install
-cd ~/antix/source
-rm -r glibc-2.28
+    # now compile glibc
+    cd ~/antix/source
+    tar xvf glibc-2.28.tar.xz
+    cd glibc-2.28
+    tar xvf ../glibc-ports-2.8.tar.gz
+    mv glibc-ports-2.8 ports
+    mkdir -v ../glibc-build
+    cd ../glibc-build
+    # patch install error
+    for file in `find ../glibc-2.28/ports/ -name 'libm-test-ulps'`; do
+        cp "$file" "$file-name";
+    done
+    echo "libc_cv_forced_unwind=yes" > config.cache
+    echo "libc_cv_c_cleanup=yes" >> config.cache
+    echo "install_root=${ANTIX_TOOLS}/${ANTIX_TARGET}" > configparms
 
+    BUILD_CC="gcc" CC="${ANTIX_TARGET}-gcc" \
+        AR="${ANTIX_TARGET}-ar" RANLIB="${ANTIX_TARGET}-ranlib" \
+        ../glibc-2.28/configure --prefix=/usr --libexecdir=/usr/lib/glibc \
+        --host=${ANTIX_TARGET} --build=${ANTIX_HOST} \
+        --disable-multilib \
+        --disable-profile \
+        --with-arch=${ANTIX_ARCH} \
+        --with-fpu=${ANTIX_FPU} \
+        --with-float=${ANTIX_FLOAT}\
+        --enable-add-ons \
+        --with-tls --enable-kernel=3.2 --with-__thread \
+        --with-binutils=${ANTIX_TOOLS}/bin \
+        --with-headers=${ANTIX_TOOLS}/${ANTIX_TARGET}/include \
+        --cache-file=config.cache
+    make -j 8
+    make install
+    cd ~/antix/source
+    rm -r glibc-2.28 glibc-build
+fi
 # gcc 2nd
 cd ~/antix/source
 tar xvf gcc-6.2.0.tar.bz2

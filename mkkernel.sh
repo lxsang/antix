@@ -5,7 +5,7 @@ cd ~/antix/source
 tar xvf linux-4.9.22.tar.xz 
 cd linux-4.9.22
 make mrproper
-make ARCH=arm CROSS_COMPILE=${ANTIX_TARGET}- sunxi_defconfig
+make ARCH=arm CROSS_COMPILE=${ANTIX_TARGET}- ${ANTIX_KERNEL_CONFIG}
 make -j 8 ARCH=arm CROSS_COMPILE=${ANTIX_TARGET}-
 make ARCH=arm CROSS_COMPILE=${ANTIX_TARGET}- \
     INSTALL_MOD_PATH=${ANTIX_ROOT} modules_install
