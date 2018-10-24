@@ -4,6 +4,7 @@ set -e
 cd ~/antix/source
 tar xvf linux-4.9.22.tar.xz 
 cd linux-4.9.22
+patch -Np1 -i ../0029-ethernet-add-sun8i-emac-driver.patch
 make mrproper
 make ARCH=arm CROSS_COMPILE=${ANTIX_TARGET}- ${ANTIX_KERNEL_CONFIG}
 make -j 8 ARCH=arm CROSS_COMPILE=${ANTIX_TARGET}-
