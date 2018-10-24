@@ -23,5 +23,6 @@ sed -i -E 's/FIPS\_mode\_set/\/\/FIPS\_mode\_set/' httpd.c
 make -j 8
 mkdir -pv ${ANTIX_ROOT}/opt/www/{htdocs,database,tmp}
 cp config.ini.tpl ${ANTIX_ROOT}/opt/www/config.ini
+chmod u+x ${ANTIX_ROOT}/opt/www/antd
 cd ~/antix/source
 rm -r ant-http
