@@ -1,0 +1,21 @@
+--- arch/arm/boot/dts/sun8i-h3.dtsi	2017-04-12 12:41:42.000000000 +0200
++++ ../linux-4.9.22-patch/arch/arm/boot/dts/sun8i-h3.dtsi	2018-10-25 01:23:23.387480490 +0200
+@@ -582,5 +582,18 @@
+ 				allwinner,pull = <SUN4I_PINCTRL_NO_PULL>;
+ 			};
+ 		};
++		emac: ethernet@1c30000 {
++			compatible = "allwinner,sun8i-h3-emac";
++			reg = <0x01c30000 0x104>, <0x01c00030 0x4>;
++			reg-names = "emac", "syscon";
++			interrupts = <GIC_SPI 82 IRQ_TYPE_LEVEL_HIGH>;
++			resets = <&ccu RST_BUS_EMAC>, <&ccu RST_BUS_EPHY>;
++			reset-names = "ahb", "ephy";
++			clocks = <&ccu CLK_BUS_EMAC>, <&ccu CLK_BUS_EPHY>;
++			clock-names = "ahb", "ephy";
++			#address-cells = <1>;
++			#size-cells = <0>;
++			status = "disabled";
++		};
+ 	};
+ };
