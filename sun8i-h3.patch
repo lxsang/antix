@@ -1,5 +1,5 @@
---- arch/arm/boot/dts/sun8i-h3.dtsi	2017-04-12 12:41:42.000000000 +0200
-+++ ../linux-4.9.22-patch/arch/arm/boot/dts/sun8i-h3.dtsi	2018-10-25 01:23:23.387480490 +0200
+--- a/arch/arm/boot/dts/sun8i-h3.dtsi	2017-04-12 12:41:42.000000000 +0200
++++ b/arch/arm/boot/dts/sun8i-h3.dtsi	2018-10-25 01:23:23.387480490 +0200
 @@ -582,5 +582,18 @@
  				allwinner,pull = <SUN4I_PINCTRL_NO_PULL>;
  			};

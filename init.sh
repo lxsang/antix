@@ -24,5 +24,6 @@ wget --no-check-certificate http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux
 wget http://patches.clfs.org/embedded-dev/iana-etc-2.30-update-2.patch
 wget http://patches.clfs.org/embedded-dev/netplug-1.2.9.2-fixes-1.patch
 wget https://raw.githubusercontent.com/lxsang/antix/master/0029-ethernet-add-sun8i-emac-driver.patch
-
+wget https://github.com/lxsang/antix/raw/master/sun8i-h3-nanopi-neo.patch
+wget https://github.com/lxsang/antix/raw/master/sun8i-h3.patch
 # other packag

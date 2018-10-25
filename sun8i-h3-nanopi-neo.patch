@@ -1,5 +1,5 @@
---- arch/arm/boot/dts/sun8i-h3-nanopi-neo.dts	2017-04-12 12:41:42.000000000 +0200
-+++ ../linux-4.9.22-patch/arch/arm/boot/dts/sun8i-h3-nanopi-neo.dts	2018-10-25 01:22:09.167478421 +0200
+--- a/arch/arm/boot/dts/sun8i-h3-nanopi-neo.dts	2017-04-12 12:41:42.000000000 +0200
++++ b/arch/arm/boot/dts/sun8i-h3-nanopi-neo.dts	2018-10-25 01:22:09.167478421 +0200
 @@ -118,6 +118,16 @@
  	pinctrl-0 = <&uart0_pins_a>;
  	status = "okay";
