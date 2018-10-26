@@ -54,8 +54,9 @@ if [ "$ANTIX_LIBC" = "musl" ]; then
           --target=${ANTIX_TARGET}
          make -j 8
          DESTDIR=${ANTIX_ROOT} make install-libs
+         ln -s /lib/ld-musl-armhf.so.1 ${ANTIX_ROOT}/usr/bin/ldd
          cd ~/antix/source
-         rm -r musl-1.1.16
+         rm -rf musl-1.1.16
 else
         # glibc
         # now compile glibc
@@ -100,7 +101,7 @@ else
         cp -v -rf ${ANTIX_PKG_BUILD}/glibc/usr/share/i18n ${ANTIX_ROOT}/usr/share
         cp -v -rf ${ANTIX_PKG_BUILD}/glibc/usr/share/locale ${ANTIX_ROOT}/usr/share
         cd ~/antix/source
-        rm -r glibc-2.28 glibc-build ${ANTIX_PKG_BUILD}/glibc
+        rm -rf glibc-2.28 glibc-build ${ANTIX_PKG_BUILD}/glibc
 fi
  # busy box
 cd ~/antix/source
@@ -121,7 +122,7 @@ make ARCH=arm CROSS_COMPILE="${ANTIX_TARGET}-"\
 cp -v examples/depmod.pl ${ANTIX_TOOLS}/bin
 chmod -v 755 ${ANTIX_TOOLS}/bin/depmod.pl
 cd ~/antix/source
-rm -r busybox-1.24.2
+rm -rf busybox-1.24.2
 # iana
 cd ~/antix/source
 tar xvf iana-etc-2.30.tar.bz2
@@ -131,7 +132,7 @@ make get
 make STRIP=yes
 make DESTDIR=${ANTIX_ROOT} install
 cd ~/antix/source
-rm -r iana-etc-2.30
+rm -rf iana-etc-2.30
 # boot
 cat > ${ANTIX_ROOT}/etc/fstab << "EOF"
 # file-system  mount-point  type   options          dump  fsck
@@ -142,7 +143,7 @@ tar xvf bootscripts-embedded-HEAD.tar.gz
 cd bootscripts-embedded
 make DESTDIR=${ANTIX_ROOT} install-bootscripts
 cd ~/antix/source
-rm -r bootscripts-embedded
+rm -rf bootscripts-embedded
 
 # mdev for busybox
 cat > ${ANTIX_ROOT}/etc/mdev.conf<< "EOF"
@@ -292,11 +293,22 @@ tty6::respawn:/sbin/getty 38400 tty6
 # you're using a serial console on ttyS0, or uncomment and adjust it if using a
 # serial console on a different serial port.
 ::respawn:/sbin/getty -L ttyS0 115200 vt100
-
+# start /etc/rc.local
+:3:sysinit:/etc/rc.local
 ::shutdown:/etc/rc.d/shutdown
 ::ctrlaltdel:/sbin/reboot
 EOF
 
+cat > ${ANTIX_ROOT}/etc/rc.local<< "EOF"
+#! /bin/sh -e
+# /etc/rc.local
+
+echo "System init...done!"
+# start dhcp for ethenet
+# udhcpc -i eth0 -s /usr/share/udhcpc/default.script
+exit 0
+EOF
+chmod +x ${ANTIX_ROOT}/etc/rc.local
 echo "Antix" > ${ANTIX_ROOT}/etc/HOSTNAME
 
 cat > ${ANTIX_ROOT}/etc/hosts << "EOF"

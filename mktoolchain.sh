@@ -2,7 +2,9 @@
 set -e
 . env.sh
 mkdir -p ${ANTIX_TOOLS}/${ANTIX_TARGET}
+set +e
 ln -sfv . ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr
+set -e
 # the linux header
 cd ~/antix/source
 tar xvf linux-4.9.22.tar.xz 
@@ -11,7 +13,7 @@ make mrproper
 make ARCH=arm headers_check
 make ARCH=arm INSTALL_HDR_PATH=${ANTIX_TOOLS}/${ANTIX_TARGET} headers_install
 cd ~/antix/source
-rm -r linux-4.9.22
+rm -rf linux-4.9.22
 # binutil
 cd ~/antix/source
 tar xvf binutils-2.27.tar.bz2
@@ -28,7 +30,7 @@ make configure-host
 make -j 8
 make install
 cd ~/antix/source
-rm -r binutils-build binutils-2.27
+rm -rf binutils-build binutils-2.27
 # gcc 1st
 cd ~/antix/source
 tar xvf gcc-6.2.0.tar.bz2
@@ -69,7 +71,7 @@ cd ../gcc-build
  make -j 8 all-gcc all-target-libgcc
  make install-gcc install-target-libgcc
  cd ~/antix/source
- rm -r gcc-6.2.0 gcc-build
+ rm -rf gcc-6.2.0 gcc-build
 
 if [ "$ANTIX_LIBC" = "musl" ]; then
     # musl
@@ -83,7 +85,7 @@ if [ "$ANTIX_LIBC" = "musl" ]; then
     make -j 8
     DESTDIR=${ANTIX_TOOLS}/${ANTIX_TARGET} make install
     cd ~/antix/source
-    rm -r musl-1.1.16
+    rm -rf musl-1.1.16
 else
     # 	glibc-2.28.tar.xz
     cd ~/antix/source
@@ -107,7 +109,7 @@ else
     #cp -v ../glibc-2.28/ports/sysdeps/unix/sysv/linux/arm/nptl/bits/pthreadtypes.h \
     #    ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/include/bits
     cd ~/antix/source
-    rm -r glibc-2.28 glibc-build
+    rm -rf glibc-2.28 glibc-build
 
     # now compile glibc
     cd ~/antix/source
@@ -142,7 +144,7 @@ else
     make -j 8
     make install
     cd ~/antix/source
-    rm -r glibc-2.28 glibc-build
+    rm -rf glibc-2.28 glibc-build
 fi
 # gcc 2nd
 cd ~/antix/source
@@ -176,6 +178,6 @@ cd ../gcc-build
  make -j 8
  make install
  cd ~/antix/source
- rm -r gcc-6.2.0 gcc-build
+ rm -rf gcc-6.2.0 gcc-build
 
 echo "Finish building the tool chain at: ${ANTIX_TOOLS}"

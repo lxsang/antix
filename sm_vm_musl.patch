@@ -39,3 +39,14 @@
  static FILE stdoutStack[STDOUT_STACK_SZ];
  
  /* N.B. As of cygwin 1.5.25 fopen("crash.dmp","a") DOES NOT WORK!  crash.dmp
+--- a/platforms/unix/config/config.sub	2018-10-26 11:57:42.382847491 +0200
++++ b/platforms/unix/config/config.sub	2018-10-26 11:57:07.470846518 +0200
+@@ -1099,7 +1099,7 @@
+ 	# The portable systems comes first.
+ 	# Each alternative MUST END IN A *, to match a version number.
+ 	# -sysv* is not here because it comes later, after sysvr4.
+-	-gnu* | -bsd* | -mach* | -minix* | -genix* | -ultrix* | -irix* \
++	-musleabi*| -gnu* | -bsd* | -mach* | -minix* | -genix* | -ultrix* | -irix* \
+ 	      | -*vms* | -sco* | -esix* | -isc* | -aix* | -sunos | -sunos[34]*\
+ 	      | -hpux* | -unos* | -osf* | -luna* | -dgux* | -solaris* | -sym* \
+ 	      | -amigaos* | -amigados* | -msdos* | -newsos* | -unicos* | -aof* \

@@ -5,9 +5,11 @@ cd ~/antix/source
 tar xvf linux-4.9.22.tar.xz 
 cd linux-4.9.22
 set +e
-patch -Np1 -i ../0029-ethernet-add-sun8i-emac-driver.patch
-patch -Np1 -i ../sun8i-h3-nanopi-neo.patch
-patch -Np1 -i ../sun8i-h3.patch
+if [ "${ANTIX_BOARD}" = "npineo" ]; then
+    patch -Np1 -i ../0029-ethernet-add-sun8i-emac-driver.patch
+    patch -Np1 -i ../sun8i-h3-nanopi-neo.patch
+    patch -Np1 -i ../sun8i-h3.patch
+fi
 set -e
 make mrproper
 #wget https://raw.githubusercontent.com/lxsang/antix/master/nanopi-config-4.9.22
