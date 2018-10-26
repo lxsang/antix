@@ -18,6 +18,7 @@ make -j 8
 make DESTDIR=${ANTIX_PKG_BUILD}/bash install
 cp -v -rf ${ANTIX_PKG_BUILD}/bash/bin/* ${ANTIX_ROOT}/bin/
 cp -v -rf ${ANTIX_PKG_BUILD}/bash/usr/lib/* ${ANTIX_ROOT}/usr/lib
+echo "/bin/bash" >> ${ANTIX_ROOT}/etc/shells
 # cp -v -rf ${ANTIX_PKG_BUILD}/bash/usr/share/locale ${ANTIX_ROOT}/usr/share/
 cd ${ANTIX_BASE}/source
 rm -rf bash-4.4 ${ANTIX_PKG_BUILD}/bash

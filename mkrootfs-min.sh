@@ -16,6 +16,10 @@ install -dv -m 1777 ${ANTIX_ROOT}/{var/,}tmp
 cat > ${ANTIX_ROOT}/etc/passwd << "EOF"
 root::0:0:root:/root:/bin/ash
 EOF
+cat > ${ANTIX_ROOT}/etc/shells << "EOF"
+/bin/ash
+/bin/sh
+EOF
 
 # Create the /etc/group file by running the following command: 
 cat > ${ANTIX_ROOT}/etc/group << "EOF"
