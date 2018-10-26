@@ -90,11 +90,11 @@ case $act in
     ;;
 3)
     echo "Building minimal rootfs"
-    mkrootfs-min.sh
+    ./mkrootfs-min.sh
     ;;
 4)
     echo "Building full rootfs"
-    mkrootfs.sh
+    ./mkrootfs.sh
     ;;
 5)
     echo "Building U-Boot"
