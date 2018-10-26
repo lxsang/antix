@@ -2,7 +2,7 @@
 set -e
 . env.sh
 # sudo apt-get install device-tree-compiler
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 git clone git://git.denx.de/u-boot.git
 cd u-boot
 git checkout v2016.11

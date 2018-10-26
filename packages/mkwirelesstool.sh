@@ -4,7 +4,7 @@ set -e
 . ../toolchain.sh
 echo ${CC}
 
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 if [ ! -f "wireless_tools.29.tar.gz" ]; then
     # download it
     wget http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/wireless_tools.29.tar.gz

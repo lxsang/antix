@@ -1,7 +1,7 @@
 #! /bin/bash
 set -e
 . ../env.sh
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 if [ ! -f "readline-7.0.tar.gz" ]; then
     # download it
     wget https://ftp.gnu.org/gnu/readline/readline-7.0.tar.gz
@@ -17,5 +17,5 @@ make DESTDIR=${ANTIX_PKG_BUILD}/readline install
 cp -v -rf ${ANTIX_PKG_BUILD}/readline/lib/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/
 cp -v -rf ${ANTIX_PKG_BUILD}/readline/usr/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/
 cp -v -rf ${ANTIX_PKG_BUILD}/readline/lib/*.so* ${ANTIX_ROOT}/lib/
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 rm -rf readline-7.0 ${ANTIX_PKG_BUILD}/readline

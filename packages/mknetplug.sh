@@ -16,13 +16,13 @@ patch -Np1 -i ../netplug-1.2.9.2-fixes-1.patch
 make -j 8
 make DESTDIR=${ANTIX_ROOT} install
 # make boot script
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 tar xvf bootscripts-embedded-HEAD.tar.gz
 cd bootscripts-embedded
 make DESTDIR=${ANTIX_ROOT} install-netplug
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 rm -r bootscripts-embedded
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 rm -rf netplug-1.2.9.2

@@ -1,7 +1,7 @@
 #! /bin/bash
 set -e
 . ../env.sh
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 if [ ! -f "bash-4.4.tar.gz" ]; then
     # download it
     wget http://ftp.gnu.org/gnu/bash/bash-4.4.tar.gz
@@ -19,5 +19,5 @@ make DESTDIR=${ANTIX_PKG_BUILD}/bash install
 cp -v -rf ${ANTIX_PKG_BUILD}/bash/bin/* ${ANTIX_ROOT}/bin/
 cp -v -rf ${ANTIX_PKG_BUILD}/bash/usr/lib/* ${ANTIX_ROOT}/usr/lib
 # cp -v -rf ${ANTIX_PKG_BUILD}/bash/usr/share/locale ${ANTIX_ROOT}/usr/share/
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 rm -rf bash-4.4 ${ANTIX_PKG_BUILD}/bash

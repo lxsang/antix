@@ -4,7 +4,7 @@ set -e
 . ../toolchain.sh
 echo ${CC}
 
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 if [ ! -f "dropbear-2018.76.tar.bz2" ]; then
     # download it
     wget https://matt.ucc.asn.au/dropbear/dropbear-2018.76.tar.bz2
@@ -21,11 +21,11 @@ make MULTI=1 \
   install DESTDIR=${ANTIX_ROOT}
 install -dv ${ANTIX_ROOT}/etc/dropbear
 # make boot script
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 tar xvf bootscripts-embedded-HEAD.tar.gz
 cd bootscripts-embedded
 make DESTDIR=${ANTIX_ROOT} install-dropbear
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 rm -r bootscripts-embedded
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 rm -rf dropbear-2018.76

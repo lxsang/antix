@@ -6,16 +6,16 @@ set +e
 ln -sfv . ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr
 set -e
 # the linux header
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 tar xvf linux-4.9.22.tar.xz 
 cd linux-4.9.22
 make mrproper
 make ARCH=arm headers_check
 make ARCH=arm INSTALL_HDR_PATH=${ANTIX_TOOLS}/${ANTIX_TARGET} headers_install
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 rm -rf linux-4.9.22
 # binutil
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 tar xvf binutils-2.27.tar.bz2
 cd binutils-2.27
 mkdir -v ../binutils-build
@@ -29,10 +29,10 @@ cd ../binutils-build
 make configure-host
 make -j 8
 make install
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 rm -rf binutils-build binutils-2.27
 # gcc 1st
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 tar xvf gcc-6.2.0.tar.bz2
 cd gcc-6.2.0
 tar xf ../mpfr-3.1.4.tar.bz2
@@ -70,12 +70,12 @@ cd ../gcc-build
   --with-fpu=${ANTIX_FPU}
  make -j 8 all-gcc all-target-libgcc
  make install-gcc install-target-libgcc
- cd ~/antix/source
+ cd ~/antix-${ANTIX_BOARD}/source
  rm -rf gcc-6.2.0 gcc-build
 
 if [ "$ANTIX_LIBC" = "musl" ]; then
     # musl
-    cd ~/antix/source
+    cd ~/antix-${ANTIX_BOARD}/source
     tar xvf musl-1.1.16.tar.gz 
     cd musl-1.1.16/
     ./configure \
@@ -84,11 +84,11 @@ if [ "$ANTIX_LIBC" = "musl" ]; then
       --target=${ANTIX_TARGET}
     make -j 8
     DESTDIR=${ANTIX_TOOLS}/${ANTIX_TARGET} make install
-    cd ~/antix/source
+    cd ~/antix-${ANTIX_BOARD}/source
     rm -rf musl-1.1.16
 else
     # 	glibc-2.28.tar.xz
-    cd ~/antix/source
+    cd ~/antix-${ANTIX_BOARD}/source
     tar xvf glibc-2.28.tar.xz
     cd glibc-2.28
     tar xvf ../glibc-ports-2.8.tar.gz
@@ -108,11 +108,11 @@ else
     #cp -v bits/stdio_lim.h ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/include/bits
     #cp -v ../glibc-2.28/ports/sysdeps/unix/sysv/linux/arm/nptl/bits/pthreadtypes.h \
     #    ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/include/bits
-    cd ~/antix/source
+    cd ~/antix-${ANTIX_BOARD}/source
     rm -rf glibc-2.28 glibc-build
 
     # now compile glibc
-    cd ~/antix/source
+    cd ~/antix-${ANTIX_BOARD}/source
     tar xvf glibc-2.28.tar.xz
     cd glibc-2.28
     tar xvf ../glibc-ports-2.8.tar.gz
@@ -143,11 +143,11 @@ else
         --cache-file=config.cache
     make -j 8
     make install
-    cd ~/antix/source
+    cd ~/antix-${ANTIX_BOARD}/source
     rm -rf glibc-2.28 glibc-build
 fi
 # gcc 2nd
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 tar xvf gcc-6.2.0.tar.bz2
 cd gcc-6.2.0
 tar xf ../mpfr-3.1.4.tar.bz2
@@ -177,7 +177,7 @@ cd ../gcc-build
   --with-fpu=${ANTIX_FPU}
  make -j 8
  make install
- cd ~/antix/source
+ cd ~/antix-${ANTIX_BOARD}/source
  rm -rf gcc-6.2.0 gcc-build
 
 echo "Finish building the tool chain at: ${ANTIX_TOOLS}"

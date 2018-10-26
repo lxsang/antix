@@ -1,7 +1,7 @@
 #! /bin/bash
 set -e
 . ../env.sh
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 if [ ! -f "libressl-2.8.1.tar.gz" ]; then
     # download it
     wget https://ftp.openbsd.org/pub/OpenBSD/LibreSSL/libressl-2.8.1.tar.gz
@@ -23,5 +23,5 @@ cp -v -rf ${ANTIX_PKG_BUILD}/openssl/usr/bin/* ${ANTIX_ROOT}/usr/bin/
 cp -v -rf ${ANTIX_PKG_BUILD}/openssl/usr/etc ${ANTIX_ROOT}/usr/
 cp -v -rf ${ANTIX_PKG_BUILD}/openssl/usr/lib/*.so* ${ANTIX_ROOT}/usr/lib/
 cp  -v ${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/libssp.so* ${ANTIX_ROOT}/usr/lib/
-cd ~/antix/source
+cd ~/antix-${ANTIX_BOARD}/source
 rm -rf libressl-2.8.1 ${ANTIX_PKG_BUILD}/openssl
