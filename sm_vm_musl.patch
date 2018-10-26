@@ -1,0 +1,41 @@
+--- a/platforms/Cross/vm/sqVirtualMachine.c	2018-10-25 20:20:43.865280785 +0200
++++ b/platforms/Cross/vm/sqVirtualMachine.c	2018-10-25 20:19:56.241279457 +0200
+@@ -544,6 +544,38 @@
+  */
+ #define STDOUT_STACK_SZ 5
+ static int stdoutStackIdx = -1;
++typedef int off_t;
++struct _IO_FILE {
++	unsigned flags;
++	unsigned char *rpos, *rend;
++	int (*close)(FILE *);
++	unsigned char *wend, *wpos;
++	unsigned char *mustbezero_1;
++	unsigned char *wbase;
++	size_t (*read)(FILE *, unsigned char *, size_t);
++	size_t (*write)(FILE *, const unsigned char *, size_t);
++	off_t (*seek)(FILE *, off_t, int);
++	unsigned char *buf;
++	size_t buf_size;
++	FILE *prev, *next;
++	int fd;
++	int pipe_pid;
++	long lockcount;
++	short dummy3;
++	signed char mode;
++	signed char lbf;
++	volatile int lock;
++	volatile int waiters;
++	void *cookie;
++	off_t off;
++	char *getln_buf;
++	void *mustbezero_2;
++	unsigned char *shend;
++	off_t shlim, shcnt;
++	FILE *prev_locked, *next_locked;
++	struct __locale_struct *locale;
++};
++
+ static FILE stdoutStack[STDOUT_STACK_SZ];
+ 
+ /* N.B. As of cygwin 1.5.25 fopen("crash.dmp","a") DOES NOT WORK!  crash.dmp

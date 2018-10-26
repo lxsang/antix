@@ -16,6 +16,6 @@ make DESTDIR=${ANTIX_PKG_BUILD}/readline install
 
 cp -v -rf ${ANTIX_PKG_BUILD}/readline/lib/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/
 cp -v -rf ${ANTIX_PKG_BUILD}/readline/usr/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/
-cp -v -rf ${ANTIX_PKG_BUILD}/readline/lib/* ${ANTIX_ROOT}/lib/
+cp -v -rf ${ANTIX_PKG_BUILD}/readline/lib/*.so* ${ANTIX_ROOT}/lib/
 cd ~/antix/source
-rm -r readline-7.0 ${ANTIX_PKG_BUILD}/readline
+rm -rf readline-7.0 ${ANTIX_PKG_BUILD}/readline

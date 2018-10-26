@@ -10,6 +10,19 @@ else
     cd ant-http
     git stash
 fi
+if [ -d "plugins" ]; then
+    cd plugins
+    rm -rf ./*
+else
+    mkdir plugins
+    cd plugins
+fi
+git clone "https://github.com/lxsang/antd-lua-plugin"
+git clone "https://github.com/lxsang/antd-wterm-plugin"
+git clone "https://github.com/lxsang/antd-cgi-plugin"
+sed  -i -E "s/CC= gcc/CC=${ANTIX_TARGET}-gcc/" antd-lua-plugin/3rd/lua-5.3.4/Makefile
+sed -i -E "s/ann.llib stmr.llib//" antd-lua-plugin/Makefile
+cd ../
 escape="${ANTIX_ROOT//\//\\/}"
 escape="${escape//\./\\.}"
 escape="${escape//\-/\\-}"
@@ -25,4 +38,4 @@ mkdir -pv ${ANTIX_ROOT}/opt/www/{htdocs,database,tmp}
 cp config.ini.tpl ${ANTIX_ROOT}/opt/www/config.ini
 chmod u+x ${ANTIX_ROOT}/opt/www/antd
 cd ~/antix/source
-rm -r ant-http
+rm -rf ant-http

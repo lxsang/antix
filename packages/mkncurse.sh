@@ -17,8 +17,8 @@ make DESTDIR=${ANTIX_PKG_BUILD}/ncurses install
 # install shared library to the toolchain
 cp -v -rf ${ANTIX_PKG_BUILD}/ncurses/lib/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/
 cp -v -rf ${ANTIX_PKG_BUILD}/ncurses/usr/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/
-cp -v -rf ${ANTIX_PKG_BUILD}/ncurses/lib/* ${ANTIX_ROOT}/lib/
+cp -v -rf ${ANTIX_PKG_BUILD}/ncurses/lib/*.so* ${ANTIX_ROOT}/lib/
 cp -v -rf ${ANTIX_PKG_BUILD}/ncurses/usr/bin/* ${ANTIX_ROOT}/usr/bin/
 cp -v -rf ${ANTIX_PKG_BUILD}/ncurses/usr/share/* ${ANTIX_ROOT}/usr/share/
 cd ~/antix/source
-rm -r ncurses-6.1 ${ANTIX_PKG_BUILD}/ncurses
+rm -rf ncurses-6.1 ${ANTIX_PKG_BUILD}/ncurses

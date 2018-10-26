@@ -21,7 +21,7 @@ make DESTDIR=${ANTIX_PKG_BUILD}/openssl install
 cp -v -rf ${ANTIX_PKG_BUILD}/openssl/usr/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/
 cp -v -rf ${ANTIX_PKG_BUILD}/openssl/usr/bin/* ${ANTIX_ROOT}/usr/bin/
 cp -v -rf ${ANTIX_PKG_BUILD}/openssl/usr/etc ${ANTIX_ROOT}/usr/
-cp -v -rf ${ANTIX_PKG_BUILD}/openssl/usr/lib/* ${ANTIX_ROOT}/usr/lib/
-cp  -v ${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/libssp* ${ANTIX_ROOT}/usr/lib/
+cp -v -rf ${ANTIX_PKG_BUILD}/openssl/usr/lib/*.so* ${ANTIX_ROOT}/usr/lib/
+cp  -v ${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/libssp.so* ${ANTIX_ROOT}/usr/lib/
 cd ~/antix/source
-rm -r libressl-2.8.1 ${ANTIX_PKG_BUILD}/openssl
+rm -rf libressl-2.8.1 ${ANTIX_PKG_BUILD}/openssl

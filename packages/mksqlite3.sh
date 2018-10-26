@@ -16,6 +16,6 @@ make -j 8
 make install
 cp -v -rf ${ANTIX_PKG_BUILD}/sqlite3/usr/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/
 cp -v -rf ${ANTIX_PKG_BUILD}/sqlite3/usr/bin/* ${ANTIX_ROOT}/usr/bin/
-cp -v -rf ${ANTIX_PKG_BUILD}/sqlite3/usr/lib/* ${ANTIX_ROOT}/usr/lib/
+cp -v -rf ${ANTIX_PKG_BUILD}/sqlite3/usr/lib/*.so* ${ANTIX_ROOT}/usr/lib/
 cd ~/antix/source
-rm -r sqlite-autoconf-3250200 ${ANTIX_PKG_BUILD}/sqlite3
+rm -rf sqlite-autoconf-3250200 ${ANTIX_PKG_BUILD}/sqlite3
