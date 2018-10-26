@@ -2,6 +2,7 @@
 set -e
 . env.sh
 mkdir -p ${ANTIX_BASE}/{source,rootfs,boot,cross-tools,pkg-build}
+set +e
 # now grab the source
 cd ${ANTIX_BASE}/source
 test ! -f binutils-2.27.tar.bz2 && wget http://ftp.gnu.org/gnu/binutils/binutils-2.27.tar.bz2
@@ -28,3 +29,4 @@ test ! -f 0029-ethernet-add-sun8i-emac-driver.patch && wget https://raw.githubus
 test ! -f sun8i-h3-nanopi-neo.patch && wget https://github.com/lxsang/antix/raw/master/sun8i-h3-nanopi-neo.patch
 test ! -f sun8i-h3.patch && wget https://github.com/lxsang/antix/raw/master/sun8i-h3.patch
 # other packag
+set -e
