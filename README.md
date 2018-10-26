@@ -7,7 +7,7 @@ Support:
 
 ## Guide
 ```sh
-# download everything needed
+# Execute
 ./bake.sh
 # Then follow the instruction
 ```
