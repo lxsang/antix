@@ -3,7 +3,7 @@ set -e
 . env.sh
 mkdir -p ~/antix/{source,rootfs,boot,cross-tools,pkg-build}
 # now grab the source
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 wget http://ftp.gnu.org/gnu/binutils/binutils-2.27.tar.bz2
 wget http://busybox.net/downloads/busybox-1.24.2.tar.bz2
 wget http://sethwklein.net/iana-etc-2.30.tar.bz2

@@ -1,7 +1,7 @@
 #! /bin/bash
 set -e
 . ../env.sh
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 if [ ! -f "sqlite-autoconf-3250200.tar.gz" ]; then
     # download it
     wget https://www.sqlite.org/2018/sqlite-autoconf-3250200.tar.gz
@@ -17,5 +17,5 @@ make install
 cp -v -rf ${ANTIX_PKG_BUILD}/sqlite3/usr/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/
 cp -v -rf ${ANTIX_PKG_BUILD}/sqlite3/usr/bin/* ${ANTIX_ROOT}/usr/bin/
 cp -v -rf ${ANTIX_PKG_BUILD}/sqlite3/usr/lib/*.so* ${ANTIX_ROOT}/usr/lib/
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 rm -rf sqlite-autoconf-3250200 ${ANTIX_PKG_BUILD}/sqlite3

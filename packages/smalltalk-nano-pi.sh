@@ -3,7 +3,7 @@
 set -e
 . ../env.sh
 #. ../toolchain.sh
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 if [ ! -d "opensmalltalk-vm" ]; then
     # download it
    git clone https://github.com/OpenSmalltalk/opensmalltalk-vm
@@ -46,7 +46,7 @@ EOF
     # --with-vmversion=5.0 \
 #    --target=${ANTIX_TARGET}\
 make -j8 install-squeak install-plugins prefix=${ANTIX_PKG_BUILD}/smalltalk  
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 # create .*so file
 # display
 cd ${ANTIX_PKG_BUILD}/smalltalk/lib/squeak/5.0-/
@@ -57,7 +57,7 @@ rm *.o
 ${ANTIX_TARGET}-ar -x libvm-sound-null.a
 ${ANTIX_TARGET}-gcc -shared *.o -o libvm-sound-null.so
 rm *.o
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 rm -r build.armv7.squeak.stack
 # install to rootfs
 mkdir -p ${ANTIX_ROOT}/opt/smalltalk

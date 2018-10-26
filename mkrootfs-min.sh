@@ -44,7 +44,7 @@ cp -v ${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/libgcc_s.so.1 ${ANTIX_ROOT}/lib/
 ${ANTIX_TARGET}-strip ${ANTIX_ROOT}/lib/libgcc_s.so.1
 if [ "$ANTIX_LIBC" = "musl" ]; then
         # musl
-        cd ~/antix-${ANTIX_BOARD}/source
+        cd ${ANTIX_BASE}/source
         tar xvf musl-1.1.16.tar.gz 
         cd musl-1.1.16/
         ./configure \
@@ -55,12 +55,12 @@ if [ "$ANTIX_LIBC" = "musl" ]; then
          make -j 8
          DESTDIR=${ANTIX_ROOT} make install-libs
          ln -s /lib/ld-musl-armhf.so.1 ${ANTIX_ROOT}/usr/bin/ldd
-         cd ~/antix-${ANTIX_BOARD}/source
+         cd ${ANTIX_BASE}/source
          rm -rf musl-1.1.16
 else
         # glibc
         # now compile glibc
-        cd ~/antix-${ANTIX_BOARD}/source
+        cd ${ANTIX_BASE}/source
         tar xvf glibc-2.28.tar.xz
         cd glibc-2.28
         tar xvf ../glibc-ports-2.8.tar.gz
@@ -100,11 +100,11 @@ else
         cp -v -rf ${ANTIX_PKG_BUILD}/glibc/usr/sbin/* ${ANTIX_ROOT}/usr/sbin
         cp -v -rf ${ANTIX_PKG_BUILD}/glibc/usr/share/i18n ${ANTIX_ROOT}/usr/share
         cp -v -rf ${ANTIX_PKG_BUILD}/glibc/usr/share/locale ${ANTIX_ROOT}/usr/share
-        cd ~/antix-${ANTIX_BOARD}/source
+        cd ${ANTIX_BASE}/source
         rm -rf glibc-2.28 glibc-build ${ANTIX_PKG_BUILD}/glibc
 fi
  # busy box
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 tar xvf busybox-1.24.2.tar.bz2
 cd busybox-1.24.2
 make distclean
@@ -121,28 +121,28 @@ make ARCH=arm CROSS_COMPILE="${ANTIX_TARGET}-"\
   CONFIG_PREFIX="${ANTIX_ROOT}" install
 cp -v examples/depmod.pl ${ANTIX_TOOLS}/bin
 chmod -v 755 ${ANTIX_TOOLS}/bin/depmod.pl
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 rm -rf busybox-1.24.2
 # iana
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 tar xvf iana-etc-2.30.tar.bz2
 cd iana-etc-2.30
 patch -Np1 -i ../iana-etc-2.30-update-2.patch
 make get
 make STRIP=yes
 make DESTDIR=${ANTIX_ROOT} install
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 rm -rf iana-etc-2.30
 # boot
 cat > ${ANTIX_ROOT}/etc/fstab << "EOF"
 # file-system  mount-point  type   options          dump  fsck
 EOF
 # bootscript
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 tar xvf bootscripts-embedded-HEAD.tar.gz
 cd bootscripts-embedded
 make DESTDIR=${ANTIX_ROOT} install-bootscripts
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 rm -rf bootscripts-embedded
 
 # mdev for busybox

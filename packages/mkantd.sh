@@ -1,7 +1,7 @@
 #! /bin/bash
 set -e
 . ../env.sh
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 if [ ! -d "ant-http" ]; then
     # download it
     git clone https://github.com/lxsang/ant-http
@@ -37,5 +37,5 @@ make -j 8
 mkdir -pv ${ANTIX_ROOT}/opt/www/{htdocs,database,tmp}
 cp config.ini.tpl ${ANTIX_ROOT}/opt/www/config.ini
 chmod u+x ${ANTIX_ROOT}/opt/www/antd
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 rm -rf ant-http

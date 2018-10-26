@@ -1,7 +1,7 @@
 #! /bin/bash
 set -e
 . ../env.sh
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 if [ ! -f "ncurses-6.1.tar.gz" ]; then
     # download it
     wget ftp://ftp.gnu.org/gnu/ncurses/ncurses-6.1.tar.gz
@@ -20,5 +20,5 @@ cp -v -rf ${ANTIX_PKG_BUILD}/ncurses/usr/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/
 cp -v -rf ${ANTIX_PKG_BUILD}/ncurses/lib/*.so* ${ANTIX_ROOT}/lib/
 cp -v -rf ${ANTIX_PKG_BUILD}/ncurses/usr/bin/* ${ANTIX_ROOT}/usr/bin/
 cp -v -rf ${ANTIX_PKG_BUILD}/ncurses/usr/share/* ${ANTIX_ROOT}/usr/share/
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 rm -rf ncurses-6.1 ${ANTIX_PKG_BUILD}/ncurses

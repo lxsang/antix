@@ -34,11 +34,6 @@ case $board in
     ;;
 esac
 
-#! /bin/bash
-echo "export ANTIX_ROOT=~/antix-\${ANTIX_BOARD}/rootfs/" >> env.sh
-echo "export ANTIX_BOOT=~/antix-\${ANTIX_BOARD}/boot/"  >> env.sh
-echo "export ANTIX_TOOLS=~/antix-\${ANTIX_BOARD}/cross-tools/"  >> env.sh
-echo "export ANTIX_PKG_BUILD=~/antix-\${ANTIX_BOARD}/pkg-build/"  >> env.sh
 echo "Please select LibC implementation:"
 echo "  1. MUSL"
 echo "  2. GLIBC"
@@ -58,10 +53,17 @@ case $libc in
     ;;
 esac
 
+echo "export ANTIX_BASE=~/antix-\${ANTIX_BOARD}-\${ANTIX_LIBC}" >> env.sh
+
+echo "export ANTIX_ROOT=\${ANTIX_BASE}/rootfs/" >> env.sh
+echo "export ANTIX_BOOT=\${ANTIX_BASE}/boot/"  >> env.sh
+echo "export ANTIX_TOOLS=\${ANTIX_BASE}/cross-tools/"  >> env.sh
+echo "export ANTIX_PKG_BUILD=\${ANTIX_BASE}/pkg-build/"  >> env.sh
+
 echo "export ANTIX_TARGET=arm-linux-\${ANTIX_LIBC}eabihf" >> env.sh
 echo "export ANTIX_HOST=$(echo \${MACHTYPE} | sed "s/-[^-]*/-cross/")" >> env.sh
 echo "export PATH=\${ANTIX_TOOLS}/bin:/bin:/usr/bin" >> env.sh
-echo "mkdir -p ~/antix-\${ANTIX_BOARD}/{source,rootfs,boot,cross-tools,pkg-build}" >> env.sh
+echo "mkdir -p \${ANTIX_BASE}/{source,rootfs,boot,cross-tools,pkg-build}" >> env.sh
 chmod +x env.sh
 
 echo "What do you want to do?:"

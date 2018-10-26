@@ -3,7 +3,7 @@
 # otherwise the build will fail
 set -e
 . ../env.sh
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 if [ ! -f "sudo-1.8.25.tar.gz" ]; then
     # download it
     wget https://www.sudo.ws/dist/sudo-1.8.25.tar.gz
@@ -36,5 +36,5 @@ sed -i -E 's/\# \%sudo/\%sudo/' ${ANTIX_ROOT}/etc/sudoers
 chown root:root ${ANTIX_ROOT}/usr/bin/sudo
 chmod u+s ${ANTIX_ROOT}/usr/bin/sudo
 chmod 4755 ${ANTIX_ROOT}/usr/bin/sudo
-cd ~/antix-${ANTIX_BOARD}/source
+cd ${ANTIX_BASE}/source
 rm -rf sudo-1.8.25 ${ANTIX_PKG_BUILD}/sudo
