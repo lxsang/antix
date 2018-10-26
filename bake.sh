@@ -63,8 +63,11 @@ echo "export ANTIX_PKG_BUILD=\${ANTIX_BASE}/pkg-build/"  >> env.sh
 echo "export ANTIX_TARGET=arm-linux-\${ANTIX_LIBC}eabihf" >> env.sh
 echo "export ANTIX_HOST=$(echo \${MACHTYPE} | sed "s/-[^-]*/-cross/")" >> env.sh
 echo "export PATH=\${ANTIX_TOOLS}/bin:/bin:/usr/bin" >> env.sh
-echo "mkdir -p \${ANTIX_BASE}/{source,rootfs,boot,cross-tools,pkg-build}" >> env.sh
+
 chmod +x env.sh
+
+echo "Preparing.........."
+./init.sh
 
 echo "What do you want to do?:"
 echo "  1. Build toolchain"
@@ -99,7 +102,6 @@ case $act in
     ;;
 6)
     echo "Building all"
-    ./init.sh
     # build the toolchain
     ./mktoolchain.sh
     # build the minimal root fs with busybox

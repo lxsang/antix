@@ -1,7 +1,7 @@
 #! /bin/bash
 set -e
 . env.sh
-mkdir -p ~/antix/{source,rootfs,boot,cross-tools,pkg-build}
+mkdir -p ${ANTIX_BASE}/{source,rootfs,boot,cross-tools,pkg-build}
 # now grab the source
 cd ${ANTIX_BASE}/source
 test ! -f binutils-2.27.tar.bz2 && wget http://ftp.gnu.org/gnu/binutils/binutils-2.27.tar.bz2
