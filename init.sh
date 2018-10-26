@@ -1,5 +1,6 @@
 #! /bin/bash
 set -e
+. env.sh
 mkdir -p ~/antix/{source,rootfs,boot,cross-tools,pkg-build}
 # now grab the source
 cd ~/antix-${ANTIX_BOARD}/source
