@@ -15,7 +15,9 @@ fi
 if [ ! -f "sm_vm_musl.patch" ]; then
     wget https://github.com/lxsang/antix/raw/master/sm_vm_musl.patch
 fi
-patch -Np1 -i sm_vm_musl.patch
+if [ "$ANTIX_LIBC" = "musl" ]; then
+    patch -Np1 -i sm_vm_musl.patch
+fi
 if [ -d ../build.armv7.squeak.stack ]; then
     rm -r ../build.armv7.squeak.stack
 fi
