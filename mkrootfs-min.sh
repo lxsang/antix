@@ -297,6 +297,7 @@ tty6::respawn:/sbin/getty 38400 tty6
 # you're using a serial console on ttyS0, or uncomment and adjust it if using a
 # serial console on a different serial port.
 ::respawn:/sbin/getty -L ttyS0 115200 vt100
+::respawn:/sbin/getty -L ttyAMA0 115200 vt100
 # start /etc/rc.local
 :3:sysinit:/etc/rc.local
 ::shutdown:/etc/rc.d/shutdown
