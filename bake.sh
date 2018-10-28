@@ -4,7 +4,7 @@ test -f env.sh && rm env.sh
 echo "#! /bin/bash" > env.sh
 echo "Please select board:"
 echo "  1. Nano pi neo"
-echo "  2. Raspberry Pi zero"
+echo "  2. Raspberry Pi V1 (Zero, A, A+, B, B+)"
 read -p "selection (1):" board
 case $board in
 1)
