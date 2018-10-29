@@ -18,11 +18,11 @@ fi
 if [ "$ANTIX_LIBC" = "musl" ]; then
     patch -Np1 -i sm_vm_musl.patch
 fi
-if [ -d ../build.armv7.squeak.stack ]; then
-    rm -r ../build.armv7.squeak.stack
+if [ -d ../build.armv.squeak.stack ]; then
+    rm -r ../build.armv.squeak.stack
 fi
-mkdir ../build.armv7.squeak.stack
-cd ../build.armv7.squeak.stack
+mkdir ../build.armv.squeak.stack
+cd ../build.armv.squeak.stack
 cat > plugins.int << "EOF"
 INTERNAL_PLUGINS = \
 FilePlugin \
@@ -60,7 +60,7 @@ ${ANTIX_TARGET}-ar -x libvm-sound-null.a
 ${ANTIX_TARGET}-gcc -shared *.o -o libvm-sound-null.so
 rm *.o
 cd ${ANTIX_BASE}/source
-rm -r build.armv7.squeak.stack
+rm -r build.armv.squeak.stack
 # install to rootfs
 mkdir -p ${ANTIX_ROOT}/opt/smalltalk
 cp -v ${ANTIX_PKG_BUILD}/smalltalk/lib/squeak/5.0-/squeak ${ANTIX_ROOT}/opt/smalltalk
