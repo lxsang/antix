@@ -26,16 +26,17 @@ cd ../build.armv.squeak.stack
 cat > plugins.int << "EOF"
 INTERNAL_PLUGINS = \
 FilePlugin \
+SqueakSSL \
+SqueakFFIPrims \
 SocketPlugin
 EOF
 cat > plugins.ext << "EOF"
 "EXTERNAL_PLUGINS = \"
 EOF
 
+flag="-D__OpenBSD__ -fPIC -DDEBUGVM=0 -DCOGMTVM=0"
 if [ "${ANTIX_BOARD}" = "rpi0" ]; then
-    flag="-fPIC -DDEBUGVM=0 -DCOGMTVM=0 -D__ARM_ARCH_6__"
-else
-    flag="-fPIC -DDEBUGVM=0 -DCOGMTVM=0"
+    flag="${flag} -D__ARM_ARCH_6__"
 fi
 
 ../opensmalltalk-vm/platforms/unix/config/configure \
@@ -47,8 +48,13 @@ fi
     --without-npsqueak  \
     --with-vmversion=5.0 \
     --host=${ANTIX_TARGET} \
+    --with-sysroot=${ANTIX_ROOT}\
     --disable-cogit\
-    CFLAGS="${flag}" # -DNO_VM_PROFILE
+    --with-libtls \
+    --disable-libtool-lock\
+    CFLAGS="${flag}" \
+    LT_SYS_LIBRARY_PATH="${ANTIX_TOOLS}/${ANTIX_TARGET}"\
+     # -DNO_VM_PROFILE
     #\
     #--build=${ANTIX_HOST} \
     #--host=${ANTIX_TARGET}
@@ -75,14 +81,14 @@ cp -v ${ANTIX_PKG_BUILD}/smalltalk/lib/squeak/5.0-/*.so ${ANTIX_ROOT}/opt/smallt
 
 cat > ${ANTIX_ROOT}/usr/bin/pharo << "EOF"
 #! /bin/ash
-/opt/smalltalk/squeak -plugins /opt/smalltalk -vm-display-null "$@"
+LD_LIBRARY_PATH=/lib /opt/smalltalk/squeak -plugins /opt/smalltalk -vm-display-null "$@"
 EOF
 
 chmod +x ${ANTIX_ROOT}/usr/bin/pharo
 # now cpoy the image
-if [ ! -f "50496.zip" ]; then
-    wget https://ci.inria.fr/pharo-ci-jenkins2/job/Test%20pending%20pull%20request%20and%20branch%20Pipeline/job/development/1349/artifact/bootstrap-cache/Pharo-monticello_bootstrap-7.0.0-alpha.build.1349.sha.2ff004a.arch.32bit.zip
+if [ ! -f "Pharo-metacello-7.0.0-alpha.build.1349.sha.2ff004a.arch.32bit.zip" ]; then
+    wget https://ci.inria.fr/pharo-ci-jenkins2/job/Test%20pending%20pull%20request%20and%20branch%20Pipeline/job/development/1349/artifact/bootstrap-cache/Pharo-metacello-7.0.0-alpha.build.1349.sha.2ff004a.arch.32bit.zip
     #https://files.pharo.org/image/50/50496.zip
 fi
-unzip Pharo-monticello_bootstrap-7.0.0-alpha.build.1349.sha.2ff004a.arch.32bit.zip -d ${ANTIX_ROOT}/opt/smalltalk
+unzip Pharo-metacello-7.0.0-alpha.build.1349.sha.2ff004a.arch.32bit.zip -d ${ANTIX_ROOT}/opt/smalltalk
 rm -rf ${ANTIX_PKG_BUILD}/smalltalk
