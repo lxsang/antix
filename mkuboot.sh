@@ -26,7 +26,7 @@ cat > ${ANTIX_BOOT}/boot.cmd << "EOF"
 fatload mmc 0 ${kernel_addr_r} zImage
 fatload mmc 0 ${fdt_addr_r} ${fdtfile}
 EOF
-echo "setenv bootargs console=tty${tty},115200 earlyprintk root=/dev/mmcblk0p2 rootfstype=ext4 rw rootwait panic=10 ${extra}" >> ${ANTIX_BOOT}/boot.cmd
+echo "setenv bootargs console=tty${tty},115200 earlyprintk root=/dev/mmcblk0p2 rootfstype=ext4 rw rootwait panic=10 \${extra}" >> ${ANTIX_BOOT}/boot.cmd
 echo "bootz \${kernel_addr_r} - \${fdt_addr_r}" >> ${ANTIX_BOOT}/boot.cmd
 
 mkimage -C none -A arm -T script -d ${ANTIX_BOOT}/boot.cmd ${ANTIX_BOOT}/boot.scr
