@@ -50,10 +50,7 @@ fi
     --host=${ANTIX_TARGET} \
     --with-sysroot=${ANTIX_ROOT}\
     --disable-cogit\
-    --with-libtls \
-    --disable-libtool-lock\
     CFLAGS="${flag}" \
-    LT_SYS_LIBRARY_PATH="${ANTIX_TOOLS}/${ANTIX_TARGET}"\
      # -DNO_VM_PROFILE
     #\
     #--build=${ANTIX_HOST} \
