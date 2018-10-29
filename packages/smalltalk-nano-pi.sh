@@ -31,6 +31,13 @@ EOF
 cat > plugins.ext << "EOF"
 "EXTERNAL_PLUGINS = \"
 EOF
+
+if [ "${ANTIX_BOARD}" = "rpi0" ]; then
+    flag="-fPIC -DDEBUGVM=0 -DCOGMTVM=0 -D__ARM_ARCH_6__"
+else
+    flag="-fPIC -DDEBUGVM=0 -DCOGMTVM=0"
+fi
+
 ../opensmalltalk-vm/platforms/unix/config/configure \
     --without-x \
     --without-gl \
@@ -41,7 +48,7 @@ EOF
     --with-vmversion=5.0 \
     --host=${ANTIX_TARGET} \
     --disable-cogit\
-    CFLAGS="-fPIC  -DDEBUGVM=1 -DCOGMTVM=0" # -DNO_VM_PROFILE
+    CFLAGS="${flag}" # -DNO_VM_PROFILE
     #\
     #--build=${ANTIX_HOST} \
     #--host=${ANTIX_TARGET}
@@ -74,7 +81,8 @@ EOF
 chmod +x ${ANTIX_ROOT}/usr/bin/pharo
 # now cpoy the image
 if [ ! -f "50496.zip" ]; then
-    wget https://files.pharo.org/image/50/50496.zip
+    wget https://ci.inria.fr/pharo-ci-jenkins2/job/Test%20pending%20pull%20request%20and%20branch%20Pipeline/job/development/1349/artifact/bootstrap-cache/Pharo-monticello_bootstrap-7.0.0-alpha.build.1349.sha.2ff004a.arch.32bit.zip
+    #https://files.pharo.org/image/50/50496.zip
 fi
-unzip 50496.zip -d ${ANTIX_ROOT}/opt/smalltalk
+unzip Pharo-monticello_bootstrap-7.0.0-alpha.build.1349.sha.2ff004a.arch.32bit.zip -d ${ANTIX_ROOT}/opt/smalltalk
 rm -rf ${ANTIX_PKG_BUILD}/smalltalk

@@ -281,6 +281,12 @@ export EDITOR='/bin/vi'
 # End /etc/profile
 EOF
 
+if [ "${ANTIX_BOARD}" = "npineo" ]; then
+    tty="S0"
+else
+    tty="AMA0"
+fi
+
 cat > ${ANTIX_ROOT}/etc/inittab<< "EOF"
 # /etc/inittab
 
@@ -293,16 +299,17 @@ tty4::respawn:/sbin/getty 38400 tty4
 tty5::respawn:/sbin/getty 38400 tty5
 tty6::respawn:/sbin/getty 38400 tty6
 
-# Put a getty on the serial line (for a terminal).  Uncomment this line if
-# you're using a serial console on ttyS0, or uncomment and adjust it if using a
-# serial console on a different serial port.
-::respawn:/sbin/getty -L ttyS0 115200 vt100
-::respawn:/sbin/getty -L ttyAMA0 115200 vt100
 # start /etc/rc.local
 :3:sysinit:/etc/rc.local
 ::shutdown:/etc/rc.d/shutdown
 ::ctrlaltdel:/sbin/reboot
+
+# Put a getty on the serial line (for a terminal).  Uncomment this line if
+# you're using a serial console on ttyS0, or uncomment and adjust it if using a
+# serial console on a different serial port.
 EOF
+
+echo "::respawn:/sbin/getty -L tty${tty} 115200 vt100" >> ${ANTIX_ROOT}/etc/inittab
 
 cat > ${ANTIX_ROOT}/etc/rc.local<< "EOF"
 #! /bin/sh -e
