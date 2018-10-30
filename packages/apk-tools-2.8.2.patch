@@ -1,5 +1,5 @@
 --- a/libfetch/common.c	2018-10-30 13:54:16.063679604 +0100
-+++ b/libfetch/common.c	2018-10-30 13:54:12.959679517 +0100
++++ b/libfetch/common.c	2018-10-30 13:54:12.959679517 +0100 
 @@ -504,7 +504,14 @@
  
  	SSL_load_error_strings();
