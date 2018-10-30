@@ -7,46 +7,25 @@ Support:
 
 ## Host Requirement
 
-
     Bash-4.0
-
     Binutils-2.20
-
     Bzip2-1.0.5
-
     Coreutils-8.1
-
     Diffutils-3.0
-
     Findutils-4.4.0
-
     Gawk-3.1
-
     GCC-4.4
-
     Glibc-2.11
-
     Grep-2.6
-
     Gzip-1.3
-
     M4-1.4.16
-
     Make-3.81
-
     ncurses5
-
     Patch-2.6
-
     Sed-4.2.1
-
     Sudo-1.7.4p4
-
     Tar-1.23
-
     Texinfo-4.13
-
-
 ```sh
 # Test if the host system satisfies all the requirements
 cat > version-check.sh << "EOF"
