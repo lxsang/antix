@@ -59,6 +59,7 @@ if [ "$ANTIX_LIBC" = "musl" ]; then
          make -j 8
          DESTDIR=${ANTIX_ROOT} make install-libs
          ln -s /lib/ld-musl-armhf.so.1 ${ANTIX_ROOT}/usr/bin/ldd
+         ln -s /lib/libc.so ${ANTIX_ROOT}/lib/libc.so.6
          cd ${ANTIX_BASE}/source
          rm -rf musl-1.1.16
 else

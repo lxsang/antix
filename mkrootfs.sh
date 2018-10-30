@@ -9,5 +9,6 @@ cd packages
 ./mkbash.sh
 ./mksqlite3.sh
 ./mkopenssl.sh
+./mkapk.sh
 ./mkantd.sh
 sudo ./mksudo.sh
