@@ -17,8 +17,8 @@ fi
 make clean
 make -j 8 LUAAPK= DESTDIR=${ANTIX_PKG_BUILD}/apk CROSS_COMPILE="${ANTIX_TARGET}-"  CFLAGS="-Wno-unused-result" static
 make LUAAPK= CROSS_COMPILE="${ANTIX_TARGET}-" DESTDIR=${ANTIX_PKG_BUILD}/apk install
-cp ${ANTIX_PKG_BUILD}/apk/sbin/apk ${ANTIX_ROOT}/usr/bin/apk-tool
-cat > ${ANTIX_ROOT}/usr/bin/apk << "EOF"
+cp ${ANTIX_PKG_BUILD}/apk/sbin/apk ${ANTIX_ROOT}/sbin/apk-tool
+cat > ${ANTIX_ROOT}/sbin/apk << "EOF"
 #! /bin/ash
 apk-tool --allow-untrusted --no-cache "$@"
 EOF
