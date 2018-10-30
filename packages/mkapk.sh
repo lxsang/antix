@@ -59,7 +59,7 @@ mkdir -pv ${ANTIX_ROOT}/lib/apk/db
 # this is hard coded to disable the
 # apk to remove or install default
 # apps or libs
-test ! -L "${ANTIX_ROOT}/lib/libncursesw.so.6" && ln -s /lib/libncurses.so.6.1 ${ANTIX_ROOT}/lib/libncursesw.so.6
+test ! -L "${ANTIX_ROOT}/lib/libncursesw.so.6" && ln -s /lib/libncursesw.so.6.1 ${ANTIX_ROOT}/lib/libncursesw.so.6
 test ! -L "${ANTIX_ROOT}/usr/lib/libssl.so.44" && ln -s /usr/lib/libssl.so.46 ${ANTIX_ROOT}/usr/lib/libssl.so.44
 test ! -L "${ANTIX_ROOT}/usr/lib/libcrypto.so.42" && ln -s /usr/lib/libcrypto.so.44 ${ANTIX_ROOT}/usr/lib/libcrypto.so.42
 cat > ${ANTIX_ROOT}/lib/apk/db/installed << "EOF"

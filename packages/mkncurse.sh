@@ -10,6 +10,7 @@ tar xvf ncurses-6.1.tar.gz
 cd ncurses-6.1
 ./configure --build=${ANTIX_HOST} --host=${ANTIX_TARGET} \
    --prefix=/usr --libdir=/lib --with-shared \
+   --enable-widec \
    --without-debug --without-ada --without-manpages\
    --without-progs --without-cxx-binding --with-build-cc=gcc
 make -j 8
