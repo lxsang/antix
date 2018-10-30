@@ -1,0 +1,26 @@
+--- a/libfetch/common.c	2018-10-30 13:54:16.063679604 +0100
++++ b/libfetch/common.c	2018-10-30 13:54:12.959679517 +0100
+@@ -1,6 +1,6 @@
+ /*	$NetBSD: common.c,v 1.31 2016/10/20 21:25:57 joerg Exp $	*/
+ /*-
+- * Copyright (c) 1998-2004 Dag-Erling Co�dan Sm�rgrav
++ * Copyright (c) 1998-2004 Dag-Erling Co�dan Sm�rgrav
+  * Copyright (c) 2008, 2010 Joerg Sonnenberger <joerg@NetBSD.org>
+  * All rights reserved.
+  *
+@@ -504,7 +504,14 @@
+ 
+ 	SSL_load_error_strings();
+ 
+-	conn->ssl_meth = TLS_client_method();
++	//conn->ssl_meth = TLS_client_method();
++	#if defined(LWS_HAVE_TLS_CLIENT_METHOD)
++		conn->ssl_meth = (SSL_METHOD *)TLS_client_method();
++	#elif defined(LWS_HAVE_TLSV1_2_CLIENT_METHOD)
++		conn->ssl_meth = (SSL_METHOD *)TLSv1_2_client_method();
++	#else
++		conn->ssl_meth = (SSL_METHOD *)SSLv23_client_method();
++	#endif
+ 	conn->ssl_ctx = SSL_CTX_new(conn->ssl_meth);
+ 	SSL_CTX_set_mode(conn->ssl_ctx, SSL_MODE_AUTO_RETRY);
+ 
