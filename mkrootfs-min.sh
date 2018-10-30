@@ -49,8 +49,8 @@ ${ANTIX_TARGET}-strip ${ANTIX_ROOT}/lib/libgcc_s.so.1
 if [ "$ANTIX_LIBC" = "musl" ]; then
         # musl
         cd ${ANTIX_BASE}/source
-        tar xvf musl-1.1.16.tar.gz 
-        cd musl-1.1.16/
+        tar xvf musl-1.1.18.tar.gz 
+        cd musl-1.1.18/
         ./configure \
           CROSS_COMPILE=${ANTIX_TARGET}- \
           --prefix=/ \
@@ -58,10 +58,10 @@ if [ "$ANTIX_LIBC" = "musl" ]; then
           --target=${ANTIX_TARGET}
          make -j 8
          DESTDIR=${ANTIX_ROOT} make install-libs
-         ln -s /lib/ld-musl-armhf.so.1 ${ANTIX_ROOT}/usr/bin/ldd
-         ln -s /lib/libc.so ${ANTIX_ROOT}/lib/libc.so.6
+         test ! -L ${ANTIX_ROOT}/usr/bin/ldd && ln -s /lib/ld-musl-armhf.so.1 ${ANTIX_ROOT}/usr/bin/ldd
+         test ! -L ${ANTIX_ROOT}/lib/libc.so.6 && ln -s /lib/libc.so ${ANTIX_ROOT}/lib/libc.so.6
          cd ${ANTIX_BASE}/source
-         rm -rf musl-1.1.16
+         rm -rf musl-1.1.18
 else
         # glibc
         # now compile glibc

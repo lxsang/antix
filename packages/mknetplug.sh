@@ -4,7 +4,7 @@ set -e
 . ../toolchain.sh
 echo ${CC}
 
-cd ~/antix/source
+cd ${ANTIX_BASE}/source
 if [ ! -f "netplug-1.2.9.2.tar.bz2" ]; then
     # download it
     wget http://www.red-bean.com/~bos/netplug/netplug-1.2.9.2.tar.bz2

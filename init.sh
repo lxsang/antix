@@ -9,7 +9,7 @@ test ! -f binutils-2.27.tar.bz2 && wget http://ftp.gnu.org/gnu/binutils/binutils
 test ! -f busybox-1.24.2.tar.bz2 && wget http://busybox.net/downloads/busybox-1.24.2.tar.bz2
 test ! -f iana-etc-2.30.tar.bz2 && wget http://sethwklein.net/iana-etc-2.30.tar.bz2
 test ! -f linux-4.9.22.tar.xz && wget http://www.kernel.org/pub/linux/kernel/v4.x/linux-4.9.22.tar.xz
-test ! -f musl-1.1.16.tar.gz && wget http://www.musl-libc.org/releases/musl-1.1.16.tar.gz
+test ! -f musl-1.1.18.tar.gz && wget http://www.musl-libc.org/releases/musl-1.1.18.tar.gz
 # switch to glib
 test ! -f glibc-2.28.tar.xz && wget http://mirror.ibcp.fr/pub/gnu/libc/glibc-2.28.tar.xz
 test ! -f glibc-ports-2.8.tar.gz && wget http://mirror.ibcp.fr/pub/gnu/libc/glibc-ports-2.8.tar.gz

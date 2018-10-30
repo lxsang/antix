@@ -76,8 +76,8 @@ cd ../gcc-build
 if [ "$ANTIX_LIBC" = "musl" ]; then
     # musl
     cd ${ANTIX_BASE}/source
-    tar xvf musl-1.1.16.tar.gz 
-    cd musl-1.1.16/
+    tar xvf musl-1.1.18.tar.gz 
+    cd musl-1.1.18/
     ./configure \
       CROSS_COMPILE=${ANTIX_TARGET}- \
       --prefix=/ \
@@ -85,7 +85,7 @@ if [ "$ANTIX_LIBC" = "musl" ]; then
     make -j 8
     DESTDIR=${ANTIX_TOOLS}/${ANTIX_TARGET} make install
     cd ${ANTIX_BASE}/source
-    rm -rf musl-1.1.16
+    rm -rf musl-1.1.18
 else
     # 	glibc-2.28.tar.xz
     cd ${ANTIX_BASE}/source

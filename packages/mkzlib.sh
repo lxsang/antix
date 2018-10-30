@@ -15,6 +15,6 @@ CFLAGS="-Os" ./configure --shared
 make -j 8
 make prefix=${ANTIX_TOOLS}/${ANTIX_TARGET} install
 cp -v ${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/libz.so.1.2.11 ${ANTIX_ROOT}/lib/
-ln -sv libz.so.1.2.11 ${ANTIX_ROOT}/lib/libz.so.1
+test ! -L ${ANTIX_ROOT}/lib/libz.so.1 && ln -sv libz.so.1.2.11 ${ANTIX_ROOT}/lib/libz.so.1
 cd ${ANTIX_BASE}/source
 rm -rf zlib-1.2.11

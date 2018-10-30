@@ -1,4 +1,5 @@
 #! /bin/bash
+set -e
 ./mkrootfs-min.sh
 cd packages
 ./mkncurse.sh
