@@ -20,5 +20,6 @@ cp -v -rf ${ANTIX_PKG_BUILD}/ncurses/usr/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/
 cp -v -rf ${ANTIX_PKG_BUILD}/ncurses/lib/*.so* ${ANTIX_ROOT}/lib/
 cp -v -rf ${ANTIX_PKG_BUILD}/ncurses/usr/bin/* ${ANTIX_ROOT}/usr/bin/
 cp -v -rf ${ANTIX_PKG_BUILD}/ncurses/usr/share/* ${ANTIX_ROOT}/usr/share/
+test ! -L ${ANTIX_ROOT}/lib/libncurses.so.6 && ln -s /lib/libncursesw.so.6 ${ANTIX_ROOT}/lib/libncurses.so.6
 cd ${ANTIX_BASE}/source
 rm -rf ncurses-6.1 ${ANTIX_PKG_BUILD}/ncurses
