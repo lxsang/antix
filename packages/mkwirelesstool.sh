@@ -7,7 +7,7 @@ echo ${CC}
 cd ${ANTIX_BASE}/source
 if [ ! -f "wireless_tools.29.tar.gz" ]; then
     # download it
-    wget http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/wireless_tools.29.tar.gz
+    wget --no-check-certificate http://www.hpl.hp.com/personal/Jean_Tourrilhes/Linux/wireless_tools.29.tar.gz
 fi
 tar xvf wireless_tools.29.tar.gz
 cd wireless_tools.29
@@ -18,4 +18,7 @@ make PREFIX=${ANTIX_PKG_BUILD}/wireless/usr
 set +e
 make install PREFIX=${ANTIX_PKG_BUILD}/wireless/usr
 set -e
-rm -rf wireless_tools.29
+cp ${ANTIX_PKG_BUILD}/wireless/usr/lib/* ${ANTIX_ROOT}/usr/lib
+cp ${ANTIX_PKG_BUILD}/wireless/usr/sbin/* ${ANTIX_ROOT}/usr/sbin
+cd ${ANTIX_BASE}/source
+rm -rf wireless_tools.29 ${ANTIX_PKG_BUILD}/wireless
