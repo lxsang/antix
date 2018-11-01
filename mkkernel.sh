@@ -29,3 +29,6 @@ cd ${ANTIX_BASE}/source
 # enable CFG80211 wireless extension in wireless support
 # get firmware from https://github.com/lwfinger/rtl8188eu/raw/master/rtl8188eufw.bin and put in 
 #  /lib/firmware/rtlwifi/
+
+# For nanopineo
+# enable sunxi8-emac driver in Driver/network driver/ethernet
