@@ -28,6 +28,7 @@ if [ ! -f "wpa_supplicant-2.6.tar.gz" ]; then
     # download it
     wget http://w1.fi/releases/wpa_supplicant-2.6.tar.gz
 fi
+tar xvf wpa_supplicant-2.6.tar.gz
 cd wpa_supplicant-2.6/wpa_supplicant
 # cross compile it
 cp defconfig .config
