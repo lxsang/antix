@@ -27,3 +27,5 @@ cd ${ANTIX_BASE}/source
 # raspberry pi 8188eu:
 # enable in Driver/staging
 # enable CFG80211 wireless extension in wireless support
+# get firmware from https://github.com/lwfinger/rtl8188eu/raw/master/rtl8188eufw.bin and put in 
+#  /lib/firmware/rtlwifi/
