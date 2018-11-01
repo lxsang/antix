@@ -2,7 +2,7 @@
 set -e
 . env.sh
 cd ${ANTIX_BASE}/source
-tar xvf linux-4.9.22.tar.xz 
+test ! -d linux-4.9.22 && tar xvf linux-4.9.22.tar.xz 
 cd linux-4.9.22
 set +e
 if [ "${ANTIX_BOARD}" = "npineo" ]; then
@@ -23,3 +23,7 @@ cp arch/arm/boot/zImage ${ANTIX_BOOT}
 cp arch/arm/boot/dts/${ANTIX_DST} ${ANTIX_BOOT}
 cd ${ANTIX_BASE}/source
 #rm -r linux-4.9.22
+# enable load module
+# raspberry pi 8188eu:
+# enable in Driver/staging
+# enable CFG80211 wireless extension in wireless support
