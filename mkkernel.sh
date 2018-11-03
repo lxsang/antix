@@ -2,7 +2,8 @@
 set -e
 . env.sh
 cd ${ANTIX_BASE}/source
-test ! -d linux-4.9.22 && tar xvf linux-4.9.22.tar.xz 
+#test ! -d linux-4.9.22 && 
+tar xvf linux-4.9.22.tar.xz 
 cd linux-4.9.22
 set +e
 if [ "${ANTIX_BOARD}" = "npineo" ]; then
