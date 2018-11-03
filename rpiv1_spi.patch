@@ -1,0 +1,242 @@
+--- a/arch/arm/boot/dts/bcm283x.dtsi	2017-04-12 12:41:42.000000000 +0200
++++ b/arch/arm/boot/dts/bcm283x.dtsi	2018-11-03 12:52:23.343238079 +0100
+@@ -155,14 +155,22 @@
+ 			status = "disabled";
+ 		};
+ 
+-		spi: spi@7e204000 {
++		spi0: spi@7e204000 {
+ 			compatible = "brcm,bcm2835-spi";
+ 			reg = <0x7e204000 0x1000>;
+ 			interrupts = <2 22>;
+ 			clocks = <&clocks BCM2835_CLOCK_VPU>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+-			status = "disabled";
++			status = "okay";
++			/* the dma channels */
++			dmas = <&dma 6>, <&dma 7>;
++			dma-names = "tx", "rx";
++			/* the chipselects used - <0> means native GPIO
++			 * add more gpios if necessary as <&gpio 6 1>
++			 * (but do not forget to make them output!)
++			 */
++			cs-gpios = <&gpio 8 1>, <&gpio 7 1>;
+ 		};
+ 
+ 		i2c0: i2c@7e205000 {
+@@ -209,7 +217,7 @@
+ 			clocks = <&aux BCM2835_AUX_CLOCK_SPI1>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+-			status = "disabled";
++			status = "okay";
+ 		};
+ 
+ 		spi2: spi@7e2150c0 {
+--- a/arch/arm/boot/dts/bcm2835-rpi-a.dts	2017-04-12 12:41:42.000000000 +0200
++++ b/arch/arm/boot/dts/bcm2835-rpi-a.dts	2018-11-03 12:52:55.539237878 +0100
+@@ -15,15 +15,37 @@
+ };
+ 
+ &gpio {
+-	pinctrl-0 = <&gpioout &alt0 &i2s_alt2 &alt3>;
+-
++	/*pinctrl-0 = <&gpioout &alt0 &i2s_alt2 &alt3>;*/
++	spi0_pins: spi0_pins {
++		brcm,pins = <7 8 9 10 11>;
++		brcm,function = <4>; /* alt0 */
++	};
+ 	/* I2S interface */
+ 	i2s_alt2: i2s_alt2 {
+ 		brcm,pins = <28 29 30 31>;
+ 		brcm,function = <BCM2835_FSEL_ALT2>;
+ 	};
+ };
++&spi0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi0_pins>;
++
++	spidev@0{
++		compatible = "spidev";
++		reg = <0>;	/* CE0 */
++		#address-cells = <1>;
++		#size-cells = <0>;
++		spi-max-frequency = <500000>;
++	};
+ 
++	spidev@1{
++		compatible = "spidev";
++		reg = <1>;	/* CE1 */
++		#address-cells = <1>;
++		#size-cells = <0>;
++		spi-max-frequency = <500000>;
++	};
++};
+ &hdmi {
+ 	hpd-gpios = <&gpio 46 GPIO_ACTIVE_HIGH>;
+ };
+--- a/arch/arm/boot/dts/bcm2835-rpi-a-plus.dts	2017-04-12 12:41:42.000000000 +0200
++++ b/arch/arm/boot/dts/bcm2835-rpi-a-plus.dts	2018-11-03 12:52:33.907238013 +0100
+@@ -22,8 +22,11 @@
+ };
+ 
+ &gpio {
+-	pinctrl-0 = <&gpioout &alt0 &i2s_alt0 &alt3>;
+-
++	/*pinctrl-0 = <&gpioout &alt0 &i2s_alt0 &alt3>;*/
++	spi0_pins: spi0_pins {
++		brcm,pins = <7 8 9 10 11>;
++		brcm,function = <4>; /* alt0 */
++	};
+ 	/* I2S interface */
+ 	i2s_alt0: i2s_alt0 {
+ 		brcm,pins = <18 19 20 21>;
+@@ -31,6 +34,27 @@
+ 	};
+ };
+ 
++&spi0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi0_pins>;
++
++	spidev@0{
++		compatible = "spidev";
++		reg = <0>;	/* CE0 */
++		#address-cells = <1>;
++		#size-cells = <0>;
++		spi-max-frequency = <500000>;
++	};
++
++	spidev@1{
++		compatible = "spidev";
++		reg = <1>;	/* CE1 */
++		#address-cells = <1>;
++		#size-cells = <0>;
++		spi-max-frequency = <500000>;
++	};
++};
++
+ &hdmi {
+ 	hpd-gpios = <&gpio 46 GPIO_ACTIVE_LOW>;
+ };
+--- a/arch/arm/boot/dts/bcm2835-rpi-b.dts	2017-04-12 12:41:42.000000000 +0200
++++ b/arch/arm/boot/dts/bcm2835-rpi-b.dts	2018-11-03 12:52:46.379237936 +0100
+@@ -16,7 +16,31 @@
+ };
+ 
+ &gpio {
+-	pinctrl-0 = <&gpioout &alt0 &alt3>;
++	/*pinctrl-0 = <&gpioout &alt0 &alt3>;*/
++	spi0_pins: spi0_pins {
++		brcm,pins = <7 8 9 10 11>;
++		brcm,function = <4>; /* alt0 */
++	};
++};
++&spi0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi0_pins>;
++
++	spidev@0{
++		compatible = "spidev";
++		reg = <0>;	/* CE0 */
++		#address-cells = <1>;
++		#size-cells = <0>;
++		spi-max-frequency = <500000>;
++	};
++
++	spidev@1{
++		compatible = "spidev";
++		reg = <1>;	/* CE1 */
++		#address-cells = <1>;
++		#size-cells = <0>;
++		spi-max-frequency = <500000>;
++	};
+ };
+ 
+ &hdmi {
+--- a/arch/arm/boot/dts/bcm2835-rpi-b-plus.dts	2017-04-12 12:41:42.000000000 +0200
++++ b/arch/arm/boot/dts/bcm2835-rpi-b-plus.dts	2018-11-03 12:53:16.671237747 +0100
+@@ -23,14 +23,37 @@
+ };
+ 
+ &gpio {
+-	pinctrl-0 = <&gpioout &alt0 &i2s_alt0 &alt3>;
+-
++	/*pinctrl-0 = <&gpioout &alt0 &i2s_alt0 &alt3>;*/
++	spi0_pins: spi0_pins {
++		brcm,pins = <7 8 9 10 11>;
++		brcm,function = <4>; /* alt0 */
++	};
+ 	/* I2S interface */
+ 	i2s_alt0: i2s_alt0 {
+ 		brcm,pins = <18 19 20 21>;
+ 		brcm,function = <BCM2835_FSEL_ALT0>;
+ 	};
+ };
++&spi0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi0_pins>;
++
++	spidev@0{
++		compatible = "spidev";
++		reg = <0>;	/* CE0 */
++		#address-cells = <1>;
++		#size-cells = <0>;
++		spi-max-frequency = <500000>;
++	};
++
++	spidev@1{
++		compatible = "spidev";
++		reg = <1>;	/* CE1 */
++		#address-cells = <1>;
++		#size-cells = <0>;
++		spi-max-frequency = <500000>;
++	};
++};
+ 
+ &hdmi {
+ 	hpd-gpios = <&gpio 46 GPIO_ACTIVE_LOW>;
+--- a/arch/arm/boot/dts/bcm2835-rpi-zero.dts	2017-04-12 12:41:42.000000000 +0200
++++ b/arch/arm/boot/dts/bcm2835-rpi-zero.dts	2018-11-03 12:53:05.171237818 +0100
+@@ -26,14 +26,38 @@
+ };
+ 
+ &gpio {
+-	pinctrl-0 = <&gpioout &alt0 &i2s_alt0 &alt3>;
+-
++	/*pinctrl-0 = <&gpioout &alt0 &i2s_alt0 &alt3>;*/
++	
++	spi0_pins: spi0_pins {
++		brcm,pins = <7 8 9 10 11>;
++		brcm,function = <4>; /* alt0 */
++	};
+ 	/* I2S interface */
+ 	i2s_alt0: i2s_alt0 {
+ 		brcm,pins = <18 19 20 21>;
+ 		brcm,function = <BCM2835_FSEL_ALT0>;
+ 	};
+ };
++&spi0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&spi0_pins>;
++
++	spidev@0{
++		compatible = "spidev";
++		reg = <0>;	/* CE0 */
++		#address-cells = <1>;
++		#size-cells = <0>;
++		spi-max-frequency = <500000>;
++	};
++
++	spidev@1{
++		compatible = "spidev";
++		reg = <1>;	/* CE1 */
++		#address-cells = <1>;
++		#size-cells = <0>;
++		spi-max-frequency = <500000>;
++	};
++};
+ 
+ &hdmi {
+ 	hpd-gpios = <&gpio 46 GPIO_ACTIVE_LOW>;
