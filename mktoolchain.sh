@@ -7,13 +7,18 @@ ln -sfv . ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr
 set -e
 # the linux header
 cd ${ANTIX_BASE}/source
-tar xvf linux-4.9.22.tar.xz 
-cd linux-4.9.22
+if [ "${ANTIX_BOARD}" = "npineo" ]; then
+    tar xvf linux-4.9.22.tar.xz 
+    cd linux-4.9.22
+else
+    cd linux-4.14.y
+fi
 make mrproper
 make ARCH=arm headers_check
 make ARCH=arm INSTALL_HDR_PATH=${ANTIX_TOOLS}/${ANTIX_TARGET} headers_install
 cd ${ANTIX_BASE}/source
-rm -rf linux-4.9.22
+test -d linux-4.9.22 && rm -rf linux-4.9.22
+test -d linux-4.14.y && rm -rf linux-4.14.y
 # binutil
 cd ${ANTIX_BASE}/source
 tar xvf binutils-2.27.tar.bz2

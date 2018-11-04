@@ -8,7 +8,11 @@ cd ${ANTIX_BASE}/source
 test ! -f binutils-2.27.tar.bz2 && wget http://ftp.gnu.org/gnu/binutils/binutils-2.27.tar.bz2
 test ! -f busybox-1.24.2.tar.bz2 && wget http://busybox.net/downloads/busybox-1.24.2.tar.bz2
 test ! -f iana-etc-2.30.tar.bz2 && wget http://sethwklein.net/iana-etc-2.30.tar.bz2
-test ! -f linux-4.9.22.tar.xz && wget http://www.kernel.org/pub/linux/kernel/v4.x/linux-4.9.22.tar.xz
+if [ "${ANTIX_BOARD}" = "npineo" ]; then
+    test ! -f linux-4.9.22.tar.xz && wget http://www.kernel.org/pub/linux/kernel/v4.x/linux-4.9.22.tar.xz
+else
+    test ! -d linux-4.14.y && git clone --depth=1 https://github.com/raspberrypi/linux linux-4.14.y
+fi
 test ! -f musl-1.1.18.tar.gz && wget http://www.musl-libc.org/releases/musl-1.1.18.tar.gz
 # switch to glib
 test ! -f glibc-2.28.tar.xz && wget http://mirror.ibcp.fr/pub/gnu/libc/glibc-2.28.tar.xz

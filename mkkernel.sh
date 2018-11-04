@@ -2,18 +2,19 @@
 set -e
 . env.sh
 cd ${ANTIX_BASE}/source
-test ! -d bcm2835-v4l2-driver && git clone https://github.com/lxsang/bcm2835-v4l2-driver
+#test ! -d bcm2835-v4l2-driver && git clone https://github.com/lxsang/bcm2835-v4l2-driver
 #test ! -d linux-4.9.22 && 
-tar xvf linux-4.9.22.tar.xz 
-cd linux-4.9.22
-cp -rvf ${ANTIX_BASE}/source/bcm2835-v4l2-driver/* drivers/staging/vc04_services
+#cp -rvf ${ANTIX_BASE}/source/bcm2835-v4l2-driver/* drivers/staging/vc04_services
 set +e
 if [ "${ANTIX_BOARD}" = "npineo" ]; then
+    tar xvf linux-4.9.22.tar.xz 
+    cd linux-4.9.22
     patch -Np1 -i ../0029-ethernet-add-sun8i-emac-driver.patch
     patch -Np1 -i ../sun8i-h3-nanopi-neo.patch
     patch -Np1 -i ../sun8i-h3.patch
 else
-    patch -Np1 -i ../rpiv1_spi.patch
+    #patch -Np1 -i ../rpiv1_spi.patch
+    cd linux-4.14.y
 fi
 set -e
 make mrproper
