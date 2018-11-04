@@ -2,11 +2,9 @@
 set -e
 . env.sh
 cd ${ANTIX_BASE}/source
-test ! -d bcm2835-v4l2-driver && git clone https://github.com/lxsang/bcm2835-v4l2-driver
 #test ! -d linux-4.9.22 && 
 tar xvf linux-4.9.22.tar.xz 
 cd linux-4.9.22
-cp -rvf ${ANTIX_BASE}/source/bcm2835-v4l2-driver/* drivers/staging/vc04_services
 set +e
 if [ "${ANTIX_BOARD}" = "npineo" ]; then
     patch -Np1 -i ../0029-ethernet-add-sun8i-emac-driver.patch
