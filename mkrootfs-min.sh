@@ -376,5 +376,66 @@ esac
 
 exit 0
 EOF
-
 chmod +x ${ANTIX_ROOT}/usr/share/udhcpc/default.script
+# load modules from /etc/modules
+cat > /etc/rd.d/init.d/S02modules << "EOF"
+#!/bin/ash
+########################################################################
+#
+# Description : Module auto-loading script
+#
+# Based on: 
+# https://unix.stackexchange.com/questions/396542/buildroot-how-to-load-modules-automatically
+#
+########################################################################
+
+. /etc/rc.d/init.d/functions
+
+# Assure that the kernel has module support.
+[ -e /proc/ksyms -o -e /proc/modules ] || exit 0
+
+case "${1}" in
+    start)
+
+        # Exit if there's no modules file or there are no
+        # valid entries
+        [ -r /etc/modules ] &&
+            egrep -qv '^($|#)' /etc/modules ||
+            exit 0
+
+        echo "Loading modules:"
+
+        # Only try to load modules if the user has actually given us
+        # some modules to load.
+        while read module args; do
+
+            # Ignore comments and blank lines.
+            case "$module" in
+                ""|"#"*) continue ;;
+            esac
+
+            # Attempt to load the module, making
+            # sure to pass any arguments provided.
+            modprobe ${module} ${args} >/dev/null
+
+            # Print the module name if successful,
+            # otherwise take note.
+            if [ $? -eq 0 ]; then
+                echo "Module: ${module} load"
+            else
+                failedmod="${failedmod} ${module}"
+            fi
+        done < /etc/modules
+
+        # Print a failure message with a list of any
+        # modules that may have failed to load.
+        if [ -n "${failedmod}" ]; then
+            echo "Failed to load modules:${failedmod}"
+        fi
+        ;;
+    *)
+        echo "Usage: ${0} {start}"
+        exit 1
+        ;;
+esac
+EOF
