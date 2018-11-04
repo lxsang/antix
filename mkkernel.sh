@@ -1,6 +1,7 @@
 #! /bin/bash
 set -e
 . env.sh
+. init.sh
 cd ${ANTIX_BASE}/source
 #test ! -d bcm2835-v4l2-driver && git clone https://github.com/lxsang/bcm2835-v4l2-driver
 #test ! -d linux-4.9.22 && 
