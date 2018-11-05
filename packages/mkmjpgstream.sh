@@ -9,8 +9,8 @@ fi
 tar xvf mjpg-streamer.tar.gz
 cd mjpg-streamer
 make clean
-sed  -i -E "s/CC = gcc/CC=${ANTIX_TARGET}-gcc/"
-sed  -i -E "s%DESTDIR = /usr/local%DESTDIR =${ANTIX_PKG_BUILD}/mjpg-stream%"
+sed  -i -E "s/CC = gcc/CC=${ANTIX_TARGET}-gcc/" Makefile
+sed  -i -E "s%DESTDIR = /usr/local%DESTDIR =${ANTIX_PKG_BUILD}/mjpg-stream%" Makefile
 set +e
 ln -s ${ANTIX_TOOLS}/${ANTIX_TARGET}/include/linux/videodev2.h ${ANTIX_TOOLS}/${ANTIX_TARGET}/include/linux/videodev.h
 set -e
