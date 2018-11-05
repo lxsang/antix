@@ -9,11 +9,13 @@ fi
 tar xvf mjpg-streamer.tar.gz
 cd mjpg-streamer
 make clean
+sed  -i -E "s/CC = gcc/CC=${ANTIX_TARGET}-gcc/"
+sed  -i -E "s%DESTDIR = /usr/local%DESTDIR =${ANTIX_PKG_BUILD}/mjpg-stream%"
 set +e
 ln -s ${ANTIX_TOOLS}/${ANTIX_TARGET}/include/linux/videodev2.h ${ANTIX_TOOLS}/${ANTIX_TARGET}/include/linux/videodev.h
 set -e
-CC=${ANTIX_TARGET}-gcc make -j 8
-make DESTDIR=${ANTIX_PKG_BUILD}/mjpg-stream install
+make -j 8
+make  install
 #cp -rf ${ANTIX_PKG_BUILD}/libv4l/usr/local/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/
 # install shared library to the toolchain
 cd ${ANTIX_BASE}/source
