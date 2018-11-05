@@ -22,7 +22,7 @@ case $board in
     echo "export ANTIX_ARCH=armv6zk" >> env.sh
     echo "export ANTIX_FLOAT=hard" >> env.sh
     echo "export ANTIX_FPU=vfp" >> env.sh
-    echo "export ANTIX_DST=bcm2835-rpi-*.dtb" >> env.sh
+    echo "export ANTIX_DST=bcm2*.dtb" >> env.sh
     echo "export ANTIX_KERNEL_CONFIG=bcmrpi_defconfig" >> env.sh #bcm2835_defconfig
     echo "export ANTIX_UBOOT_CONFIG=rpi_config" >> env.sh
     echo "export ANTIX_UBIN=u-boot.bin" >> env.sh

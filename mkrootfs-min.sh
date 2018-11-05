@@ -378,7 +378,7 @@ exit 0
 EOF
 chmod +x ${ANTIX_ROOT}/usr/share/udhcpc/default.script
 # load modules from /etc/modules
-cat > /etc/rd.d/init.d/S02modules << "EOF"
+cat > ${ANTIX_ROOT}/etc/rc.d/init.d/S02modules << "EOF"
 #!/bin/ash
 ########################################################################
 #
@@ -439,3 +439,6 @@ case "${1}" in
         ;;
 esac
 EOF
+chmod +x ${ANTIX_ROOT}/etc/rc.d/init.d/S02modules
+ln -s /etc/rc.d/init.d/S02modules  ${ANTIX_ROOT}/etc/rc.d/start/S02modules
+touch ${ANTIX_ROOT}/etc/modules
