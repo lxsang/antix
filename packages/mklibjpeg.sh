@@ -7,11 +7,11 @@ if [ ! -f "jpegsrc.v9c.tar.gz" ]; then
     wget http://www.ijg.org/files/jpegsrc.v9c.tar.gz
 fi
 tar xvf jpegsrc.v9c.tar.gz
-cd jpegsrc.v9c
+cd jpeg-9c
 ./configure --host=${ANTIX_TARGET} \
    CC=${ANTIX_TARGET}-cc
 make -j 8
 make DESTDIR=${ANTIX_PKG_BUILD}/libjpeg install
 # install shared library to the toolchain
 cd ${ANTIX_BASE}/source
-rm -rf jpegsrc.v9c #${ANTIX_PKG_BUILD}/ncurses
+rm -rf jpeg-9c #${ANTIX_PKG_BUILD}/ncurses
