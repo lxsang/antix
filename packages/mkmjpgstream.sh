@@ -8,8 +8,9 @@ if [ ! -f "mjpg-streamer.tar.gz" ]; then
 fi
 tar xvf mjpg-streamer.tar.gz
 cd mjpg-streamer
+make clean
 set +e
-ln -s ${ANTIX_TOOLS}/{ANTIX_TARGET}/include/linux/videodev2.h ${ANTIX_TOOLS}/{ANTIX_TARGET}/include/linux/videodev.h
+ln -s ${ANTIX_TOOLS}/${ANTIX_TARGET}/include/linux/videodev2.h ${ANTIX_TOOLS}/${ANTIX_TARGET}/include/linux/videodev.h
 set -e
 CC=${ANTIX_TARGET}-gcc make -j 8
 make DESTDIR=${ANTIX_PKG_BUILD}/mjpg-stream install
