@@ -12,7 +12,7 @@ cd jpeg-9c
    CC=${ANTIX_TARGET}-gcc
 make -j 8
 make DESTDIR=${ANTIX_PKG_BUILD}/libjpeg install
-cp ${ANTIX_PKG_BUILD}/libjpeg/usr/local/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/
+cp -rf ${ANTIX_PKG_BUILD}/libjpeg/usr/local/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/
 # install shared library to the toolchain
 cd ${ANTIX_BASE}/source
 rm -rf jpeg-9c ${ANTIX_PKG_BUILD}/libjpeg
