@@ -10,6 +10,7 @@ fi
 
 cd argp-standalone
 ./configure --host=${ANTIX_TARGET} CC=${ANTIX_TARGET}-gcc
+CC=${ANTIX_TARGET}-gcc make -j 8
 CC=${ANTIX_TARGET}-gcc make DESTDIR=${ANTIX_PKG_BUILD}/argp install
 #cp -rf ${ANTIX_PKG_BUILD}/libjpeg/usr/local/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/
 # install shared library to the toolchain
