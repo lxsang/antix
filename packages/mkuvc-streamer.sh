@@ -9,7 +9,7 @@ fi
 
 cd uvc-streamer
 CC=${ANTIX_TARGET}-gcc  make -j 8
-cp uvc_stream ${ANTIX_PKG_BUILD}/
+cp uvc_stream ${ANTIX_ROOT}/usr/bin/uvcstream
 #cp -rf ${ANTIX_PKG_BUILD}/argp/usr/local/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/
 # install shared library to the toolchain
 cd ${ANTIX_BASE}/source
