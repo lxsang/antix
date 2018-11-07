@@ -3,7 +3,8 @@ The build step is based on CLFS.
 
 Support:
 * Nano pi neo
-* Raspberry Pi V1 (experimental): Zero, A, A+, B, B+
+* Raspberry Pi V1: Zero, A, A+, B, B+
+* Rapberrry Pi V2: not yet (in comming)
 
 ## Host Requirement
 
