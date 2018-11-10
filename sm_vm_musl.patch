@@ -5,6 +5,7 @@
  #define STDOUT_STACK_SZ 5
  static int stdoutStackIdx = -1;
 +// typedef int off_t;
++ #ifdef __MUSL__
 +struct _IO_FILE {
 +	unsigned flags;
 +	unsigned char *rpos, *rend;
@@ -35,6 +36,7 @@
 +	FILE *prev_locked, *next_locked;
 +	struct __locale_struct *locale;
 +};
++ #endif
 +
  static FILE stdoutStack[STDOUT_STACK_SZ];
  
