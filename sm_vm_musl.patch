@@ -1,11 +1,10 @@
---- a/platforms/Cross/vm/sqVirtualMachine.c	2018-10-25 20:20:43.865280785 +0200
-+++ b/platforms/Cross/vm/sqVirtualMachine.c	2018-10-25 20:19:56.241279457 +0200
+--- a/platforms/Cross/vm/sqVirtualMachine.c	2018-11-10 11:47:42.167493855 +0100
++++ b/platforms/Cross/vm/sqVirtualMachine.c	2018-11-10 11:47:18.799494001 +0100
 @@ -544,6 +544,38 @@
   */
  #define STDOUT_STACK_SZ 5
  static int stdoutStackIdx = -1;
-+// typedef int off_t;
-+ #ifdef __MUSL__
++#ifdef __MUSL__
 +struct _IO_FILE {
 +	unsigned flags;
 +	unsigned char *rpos, *rend;
@@ -36,8 +35,7 @@
 +	FILE *prev_locked, *next_locked;
 +	struct __locale_struct *locale;
 +};
-+ #endif
-+
++#endif
  static FILE stdoutStack[STDOUT_STACK_SZ];
  
  /* N.B. As of cygwin 1.5.25 fopen("crash.dmp","a") DOES NOT WORK!  crash.dmp
