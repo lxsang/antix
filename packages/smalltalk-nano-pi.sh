@@ -34,7 +34,7 @@ cat > plugins.ext << "EOF"
 "EXTERNAL_PLUGINS = \"
 EOF
 
-flag="-D__OpenBSD__ -fPIC -DDEBUGVM=0 -DCOGMTVM=0"
+flag="-D__OpenBSD__ -D__MUSL__ -fPIC -DDEBUGVM=0 -DCOGMTVM=0"
 if [ "${ANTIX_BOARD}" = "rpi0" ]; then
     flag="${flag} -D__ARM_ARCH_6__"
 fi
