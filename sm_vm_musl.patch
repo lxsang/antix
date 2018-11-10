@@ -46,7 +46,7 @@
  	# Each alternative MUST END IN A *, to match a version number.
  	# -sysv* is not here because it comes later, after sysvr4.
 -	-gnu* | -bsd* | -mach* | -minix* | -genix* | -ultrix* | -irix* \
-+	-musleabi*| -gnu* | -bsd* | -mach* | -minix* | -genix* | -ultrix* | -irix* \
++	-musl*| -gnu* | -bsd* | -mach* | -minix* | -genix* | -ultrix* | -irix* \
  	      | -*vms* | -sco* | -esix* | -isc* | -aix* | -sunos | -sunos[34]*\
  	      | -hpux* | -unos* | -osf* | -luna* | -dgux* | -solaris* | -sym* \
  	      | -amigaos* | -amigados* | -msdos* | -newsos* | -unicos* | -aof* \
