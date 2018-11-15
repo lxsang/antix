@@ -16,3 +16,7 @@ export ANTIX_PKG_BUILD=${ANTIX_BASE}/pkg-build/
 export ANTIX_TARGET=arm-linux-${ANTIX_LIBC}eabihf
 export ANTIX_HOST=$(echo ${MACHTYPE} | sed 's/-[^-]*/-cross/')
 export PATH=${ANTIX_TOOLS}/bin:/bin:/usr/bin
+export PKG_CONFIG_PATH=${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/pkgconfig
+export PKG_CONFIG_DIR=
+export PKG_CONFIG_LIBDIR=${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/pkgconfig
+export PKG_CONFIG_SYSROOT_DIR=

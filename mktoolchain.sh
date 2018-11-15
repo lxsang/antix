@@ -18,7 +18,7 @@ make ARCH=arm headers_check
 make ARCH=arm INSTALL_HDR_PATH=${ANTIX_TOOLS}/${ANTIX_TARGET} headers_install
 cd ${ANTIX_BASE}/source
 test -d linux-4.9.22 && rm -rf linux-4.9.22
-test -d linux-4.14.y && rm -rf linux-4.14.y
+#test -d linux-4.14.y && rm -rf linux-4.14.y
 # binutil
 cd ${ANTIX_BASE}/source
 tar xvf binutils-2.27.tar.bz2
@@ -170,7 +170,7 @@ cd ../gcc-build
   --target=${ANTIX_TARGET} \
   --with-sysroot=${ANTIX_TOOLS}/${ANTIX_TARGET} \
   --disable-nls \
-  --enable-languages=c \
+  --enable-languages=c,c++ \
   --enable-c99 \
   --enable-long-long \
   --disable-libmudflap \
@@ -179,7 +179,8 @@ cd ../gcc-build
   --with-mpfr-lib=$(pwd)/mpfr/src/.libs \
   --with-arch=${ANTIX_ARCH} \
   --with-float=${ANTIX_FLOAT} \
-  --with-fpu=${ANTIX_FPU}
+  --with-fpu=${ANTIX_FPU}\
+  --disable-libsanitizer
  make -j 8
  make install
  cd ${ANTIX_BASE}/source
