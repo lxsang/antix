@@ -64,6 +64,9 @@ echo "export ANTIX_TARGET=arm-linux-\${ANTIX_LIBC}eabihf" >> env.sh
 echo "export ANTIX_HOST=\$(echo \${MACHTYPE} | sed 's/-[^-]*/-cross/')" >> env.sh
 echo "export PATH=\${ANTIX_TOOLS}/bin:/bin:/usr/bin" >> env.sh
 echo "export PKG_CONFIG_PATH=\${ANTIX_TOOLS}/\${ANTIX_TARGET}/lib/pkgconfig" >> env.sh
+echo "export PKG_CONFIG_DIR=" >> env.sh
+echo "export PKG_CONFIG_LIBDIR=\${ANTIX_TOOLS}/\${ANTIX_TARGET}/lib/pkgconfig" >> env.sh
+echo "export PKG_CONFIG_SYSROOT_DIR=" >> env.sh
 chmod +x env.sh
 
 echo "Preparing.........."
