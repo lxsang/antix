@@ -53,7 +53,8 @@ case $libc in
     ;;
 esac
 
-echo "export ANTIX_BASE=~/antix-\${ANTIX_BOARD}-\${ANTIX_LIBC}" >> env.sh
+echo "export ANTIX_PRJ=~" >> env.sh
+echo "export ANTIX_BASE=\${ANTIX_PRJ}/antix-\${ANTIX_BOARD}-\${ANTIX_LIBC}" >> env.sh
 
 echo "export ANTIX_ROOT=\${ANTIX_BASE}/rootfs/" >> env.sh
 echo "export ANTIX_BOOT=\${ANTIX_BASE}/boot/"  >> env.sh

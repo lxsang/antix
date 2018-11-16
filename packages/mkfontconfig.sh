@@ -1,7 +1,7 @@
 #! /bin/bash
 # depend on:
 # freetype
-# libxml2
+# libxml2 (no if we install expart)
 set -e
 . ../env.sh
 . ../toolchain.sh
@@ -17,10 +17,10 @@ cd ${dir}
 ./configure --prefix=${ANTIX_TOOLS}/${ANTIX_TARGET}\
     --build=${ANTIX_HOST} \
     --host=${ANTIX_TARGET}\
-    --enable-libxml2\
     --disable-docs \
     --with-arch=${ANTIX_ARCH}
 # -arch ${ANTIX_ARCH}
+# --enable-libxml2\
 make -j8
 make install
 #cp -avrf ${ANTIX_PKG_BUILD}/freetype/usr/local/* ${ANTIX_TOOLS}/${ANTIX_TARGET}/

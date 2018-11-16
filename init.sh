@@ -1,7 +1,9 @@
 #! /bin/bash
 set -e
 . env.sh
-mkdir -p ${ANTIX_BASE}/{source,rootfs,boot,cross-tools,pkg-build}
+mkdir -p ${ANTIX_BASE}/{rootfs,boot,cross-tools,pkg-build}
+test ! -d ${ANTIX_PRJ}/antix_sources && mkdir -pv ${ANTIX_PRJ}/antix_sources
+test ! -L ${ANTIX_BASE}/source && ln -s ${ANTIX_PRJ}/antix_sources ${ANTIX_BASE}/source
 set +e
 # now grab the source
 cd ${ANTIX_BASE}/source

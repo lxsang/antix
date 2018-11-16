@@ -20,8 +20,7 @@ cd ${dir}
 ./configure --prefix=${ANTIX_PKG_BUILD}/pango\
     --build=${ANTIX_HOST}\
     --host=${ANTIX_TARGET}\
-    --without-cairo \
-    --without-x
+    --without-cairo 
    
 make -j8
 make install

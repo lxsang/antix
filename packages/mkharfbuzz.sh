@@ -1,5 +1,6 @@
 #! /bin/bash
 # depend on freetype
+# maybe glib
 set -e
 . ../env.sh
 . ../toolchain.sh
