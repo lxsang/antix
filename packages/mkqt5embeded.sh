@@ -35,12 +35,19 @@ PKG_CONFIG_SYSROOT_DIR=/ \
     -opensource -confirm-license \
     -device-option CROSS_COMPILE=${ANTIX_TARGET}- -sysroot ${ANTIX_TOOLS}/${ANTIX_TARGET} \
     -prefix /usr/local/qt5\
-    -I "${ANTIX_TOOLS}/${ANTIX_TARGET}/include/c++/6.2.0"\
-    -I "${ANTIX_TOOLS}/${ANTIX_TARGET}/include/"\
-    -extprefix ${ANTIX_PKG_BUILD}/qt
-make -j8
+    -nomake examples -no-compile-examples\
+    -skip qtlocation -skip qtmultimedia \
+    -extprefix ${ANTIX_PKG_BUILD}/qt\
+    QMAKE_CFLAGS_ISYSTEM=\
+    -no-openssl
+# we disable openssl for now, since wt doesnot support libressl
+# will figureout how to install openssl
+# fix -isystem bug
+# dirty hack, ignore first fail, fix -isystem issue, then rebuild
+set +e
+make -j 10
 make install
-
+echo "Installed"
 #cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/libharfbuzz*.so* ${ANTIX_ROOT}/usr/lib
 
 cd ${ANTIX_BASE}/source
