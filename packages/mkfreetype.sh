@@ -4,7 +4,7 @@
 # - harfbuzz
 set -e
 . ../env.sh
-
+# @1=yes|no
 cd ${ANTIX_BASE}/source
 if [ ! -f "freetype-2.7.tar.gz" ]; then
     # download it
@@ -19,7 +19,7 @@ cd freetype-2.7
 ./configure --prefix=${ANTIX_TOOLS}/${ANTIX_TARGET}\
     --build=${ANTIX_HOST} \
     --host=${ANTIX_TARGET} \
-    --with-harfbuzz=yes
+    --with-harfbuzz=$1
 make -j8
 make install
 #sed -i -E "s%${ANTIX_PKG_BUILD}/freetype/usr/local%${ANTIX_TOOLS}/${ANTIX_TARGET}%"  ${ANTIX_PKG_BUILD}/freetype/usr/local/bin/freetype-config

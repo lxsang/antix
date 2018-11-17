@@ -37,7 +37,6 @@ PKG_CONFIG_SYSROOT_DIR=/ \
     -prefix /usr/local/qt5\
     -nomake examples -no-compile-examples\
     -skip qtlocation -skip qtmultimedia \
-    -extprefix ${ANTIX_PKG_BUILD}/qt\
     QMAKE_CFLAGS_ISYSTEM=\
     -no-openssl
 # we disable openssl for now, since wt doesnot support libressl
