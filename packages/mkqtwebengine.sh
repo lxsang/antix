@@ -8,6 +8,9 @@ if [ ! -d "${dir}" ]; then
     # download it
     git clone http://code.qt.io/qt/qtwebengine.git
 fi
+cd  ${dir}
+git submodule update --init
+test -d "qt-we-build" && rm -r "qt-we-build"
 mkdir "qt-we-build"
 cd "qt-we-build"
 ${ANTIX_TOOLS}/${ANTIX_TARGET}/local/qt5/bin/qmake ../${dir}/qtwebengine.pro 
