@@ -56,7 +56,8 @@ cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Core.so* ${ANTIX
 cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5EglFSDeviceIntegration.so* ${ANTIX_ROOT}/usr/lib
 cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5DBus.so* ${ANTIX_ROOT}/usr/lib
 cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Network.so* ${ANTIX_ROOT}/usr/lib
-
-
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Quick.so* ${ANTIX_ROOT}/usr/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5WebView.so* ${ANTIX_ROOT}/usr/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Qml.so* ${ANTIX_ROOT}/usr/lib
 cd ${ANTIX_BASE}/source
 #rm -rf  ${dir}

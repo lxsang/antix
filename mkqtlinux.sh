@@ -14,7 +14,7 @@ cd packages
 # it is listed here as an optional
 # option:
 # ./mkbash.sh
-./mkopenssl.sh
+./mklibssl.sh
 ./mkapk.sh
 sudo ./mksudo.sh
 ./mklibjpeg.sh
