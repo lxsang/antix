@@ -10,6 +10,7 @@ if [ ! -d "${dir}" ]; then
 fi
 cd  ${dir}
 git submodule update --init
+cd ../
 test -d "qt-we-build" && rm -r "qt-we-build"
 mkdir "qt-we-build"
 cd "qt-we-build"
