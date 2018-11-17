@@ -3,7 +3,7 @@ set -e
 . ../env.sh
 # depends on mesa  
 # install flex
-#. ../toolchain.sh
+. ../toolchain.sh
 cd ${ANTIX_BASE}/source
 dir="qt-everywhere-src-5.11.2"
 if [ ! -f "${dir}.tar.xz" ]; then
@@ -35,29 +35,31 @@ PKG_CONFIG_SYSROOT_DIR=/ \
     -opensource -confirm-license \
     -device-option CROSS_COMPILE=${ANTIX_TARGET}- -sysroot ${ANTIX_TOOLS}/${ANTIX_TARGET} \
     -prefix /usr/local/qt5\
-    -nomake examples -no-compile-examples\
+    -nomake examples -no-compile-examples -no-webengine-v8-snapshot\
     -skip qtlocation -skip qtmultimedia \
     QMAKE_CFLAGS_ISYSTEM=\
     -no-openssl
+#exit 0
 # we disable openssl for now, since wt doesnot support libressl
 # will figureout how to install openssl
 # fix -isystem bug
 # dirty hack, ignore first fail, fix -isystem issue, then rebuild
-set +e
+#set +e
 make -j 10
 make install
 echo "Installed"
 
 #copy only needed libs
-
-cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Widgets.so* ${ANTIX_ROOT}/usr/lib
-cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Gui.so* ${ANTIX_ROOT}/usr/lib
-cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Core.so* ${ANTIX_ROOT}/usr/lib
-cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5EglFSDeviceIntegration.so* ${ANTIX_ROOT}/usr/lib
-cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5DBus.so* ${ANTIX_ROOT}/usr/lib
-cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Network.so* ${ANTIX_ROOT}/usr/lib
-cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Quick.so* ${ANTIX_ROOT}/usr/lib
-cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5WebView.so* ${ANTIX_ROOT}/usr/lib
-cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Qml.so* ${ANTIX_ROOT}/usr/lib
+mkdir -p ${ANTIX_ROOT}/opt/qt5/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Widgets.so* ${ANTIX_ROOT}/opt/qt5/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Gui.so* ${ANTIX_ROOT}/opt/qt5/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Core.so* ${ANTIX_ROOT}/opt/qt5/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5EglFSDeviceIntegration.so* ${ANTIX_ROOT}/opt/qt5/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5DBus.so* ${ANTIX_ROOT}/opt/qt5/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Network.so* ${ANTIX_ROOT}/opt/qt5/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Quick.so* ${ANTIX_ROOT}/opt/qt5/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5WebView.so* ${ANTIX_ROOT}/opt/qt5/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Qml.so* ${ANTIX_ROOT}/opt/qt5/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Svg.so* ${ANTIX_ROOT}/opt/qt5/lib
 cd ${ANTIX_BASE}/source
 #rm -rf  ${dir}

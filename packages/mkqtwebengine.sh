@@ -14,7 +14,7 @@ cd ../
 test -d "qt-we-build" && rm -r "qt-we-build"
 mkdir "qt-we-build"
 cd "qt-we-build"
-${ANTIX_TOOLS}/${ANTIX_TARGET}/local/qt5/bin/qmake ../${dir}/qtwebengine.pro 
+${ANTIX_TOOLS}/${ANTIX_TARGET}/local/qt5/bin/qmake  ../${dir}/qtwebengine.pro 
 # configure cross platform
    
 make -j8

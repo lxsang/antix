@@ -9,7 +9,7 @@ if [ ! -f "openssl-1.1.1.tar.gz" ]; then
 fi
 tar xvf openssl-1.1.1.tar.gz
 cd openssl-1.1.1
-./Configure linux-generic32 shared  -DL_ENDIAN \
+./Configure uClinux-dist  shared  -DL_ENDIAN \
     --prefix=${ANTIX_PKG_BUILD}/openssl \
     --openssldir=${ANTIX_ROOT}/usr/local/ssl
 make PROCESSOR=ARM
