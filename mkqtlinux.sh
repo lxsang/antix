@@ -22,5 +22,7 @@ sudo ./mksudo.sh
 ./mkharfbuzz.sh
 ./mkfreetype.sh "yes"
 ./mkfontconfig.sh
+./mklibdrm.sh
+./mkmesa.sh
 # qt
 ./mkqt5embeded.sh
