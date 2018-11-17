@@ -44,7 +44,9 @@ EOF
 touch ${ANTIX_ROOT}/var/log/lastlog
 chmod -v 664 ${ANTIX_ROOT}/var/log/lastlog
 # lib gcc
-cp -v ${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/libgcc_s.so.1 ${ANTIX_ROOT}/lib/
+cp -av ${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/libgcc_s.so.1 ${ANTIX_ROOT}/lib/
+cp -av ${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/libstdc++*.so* ${ANTIX_ROOT}/lib/
+#lib stdc++
 ${ANTIX_TARGET}-strip ${ANTIX_ROOT}/lib/libgcc_s.so.1
 if [ "$ANTIX_LIBC" = "musl" ]; then
         # musl

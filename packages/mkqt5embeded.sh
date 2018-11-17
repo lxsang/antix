@@ -47,7 +47,16 @@ set +e
 make -j 10
 make install
 echo "Installed"
-#cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/libharfbuzz*.so* ${ANTIX_ROOT}/usr/lib
+
+#copy only needed libs
+
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Widgets.so* ${ANTIX_ROOT}/usr/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Gui.so* ${ANTIX_ROOT}/usr/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Core.so* ${ANTIX_ROOT}/usr/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5EglFSDeviceIntegration.so* ${ANTIX_ROOT}/usr/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5DBus.so* ${ANTIX_ROOT}/usr/lib
+cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/usr/local/qt5/lib/libQt5Network.so* ${ANTIX_ROOT}/usr/lib
+
 
 cd ${ANTIX_BASE}/source
 #rm -rf  ${dir}

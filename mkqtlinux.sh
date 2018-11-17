@@ -14,6 +14,8 @@ cd packages
 # it is listed here as an optional
 # option:
 # ./mkbash.sh
+./mkopenssl.sh
+./mkapk.sh
 sudo ./mksudo.sh
 ./mklibjpeg.sh
 ./mklibpng.sh "1.2.59"
