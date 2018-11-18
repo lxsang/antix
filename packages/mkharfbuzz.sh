@@ -20,8 +20,7 @@ cd ${dir}
     --with-glib=no \
     --with-cairo=no \
     --with-sysroot=${ANTIX_ROOT} \
-    --with-freetype=yes\
-    --with-icu=no
+    --with-freetype=yes
 # -arch ${ANTIX_ARCH}
 make -j8
 make install

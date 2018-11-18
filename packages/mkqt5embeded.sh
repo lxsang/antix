@@ -5,10 +5,10 @@ set -e
 # install flex
 . ../toolchain.sh
 cd ${ANTIX_BASE}/source
-dir="qt-everywhere-src-5.11.2"
+dir="qt-everywhere-opensource-src-5.9.0"
 if [ ! -f "${dir}.tar.xz" ]; then
     # download it
-    wget https://download.qt.io/archive/qt/5.11/5.11.2/single/qt-everywhere-src-5.11.2.tar.xz
+    wget https://download.qt.io/archive/qt/5.9/5.9.0/single/qt-everywhere-opensource-src-5.9.0.tar.xz
 fi
 if [ ! -d "${dir}" ]; then
     tar xvf ${dir}.tar.xz
@@ -35,7 +35,7 @@ PKG_CONFIG_SYSROOT_DIR=/ \
     -opensource -confirm-license \
     -device-option CROSS_COMPILE=${ANTIX_TARGET}- -sysroot ${ANTIX_TOOLS}/${ANTIX_TARGET} \
     -prefix /usr/local/qt5\
-    -nomake examples -no-compile-examples -no-webengine-v8-snapshot\
+    -nomake examples -no-compile-examples \
     -skip qtlocation -skip qtmultimedia \
     QMAKE_CFLAGS_ISYSTEM=\
     -no-openssl

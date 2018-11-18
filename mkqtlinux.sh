@@ -19,6 +19,7 @@ cd packages
 sudo ./mksudo.sh
 ./mklibjpeg.sh
 ./mklibpng.sh "1.2.59"
+./mkicu.sh
 ./mkexpat.sh
 ./mkfreetype.sh "no"
 ./mkharfbuzz.sh
@@ -28,3 +29,5 @@ sudo ./mksudo.sh
 ./mkmesa.sh
 # qt
 ./mkqt5embeded.sh
+# qt webkit
+#./mkqtwebkit.sh
