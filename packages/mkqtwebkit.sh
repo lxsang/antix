@@ -24,6 +24,7 @@ fi
 test -d qt-webkit-build && rm -r qt-webkit-build
 mkdir qt-webkit-build
 cd qt-webkit-build
+perl ../../Tools/Scripts/build-webkit --qt --qmake="/home/mrsang/antix-rpi0-musl/cross-tools//arm-linux-musleabihf/local/qt5/bin/qmake" --release --no-webgl --no-3d-rendering --only-webkit
 # qmake
 
 # configure cross platform

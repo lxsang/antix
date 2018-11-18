@@ -27,6 +27,7 @@ sudo ./mksudo.sh
 ./mkfontconfig.sh
 ./mklibdrm.sh
 ./mkmesa.sh
+./mksqlite3.sh
 # qt
 ./mkqt5embeded.sh
 # qt webkit
