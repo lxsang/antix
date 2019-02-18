@@ -1,4 +1,5 @@
 # antix
+Build your own minimal Linux system (like Alpine linux).
 The build step is based on CLFS.
 
 Support:
