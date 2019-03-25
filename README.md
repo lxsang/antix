@@ -28,6 +28,8 @@ Support:
     Sudo-1.7.4p4
     Tar-1.23
     Texinfo-4.13
+    u-boot-tools
+    device-tree-compiler
 ```sh
 # Test if the host system satisfies all the requirements
 cat > version-check.sh << "EOF"
