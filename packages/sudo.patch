@@ -1,0 +1,15 @@
+--- a/lib/util/Makefile.in	2018-09-02 14:30:09.000000000 +0200
++++ b/lib/util/Makefile.in	2019-03-25 15:05:23.153457263 +0100
+@@ -167,10 +167,10 @@
+ 	./mksigname > $@
+ 
+ mksiglist: $(srcdir)/mksiglist.c $(srcdir)/mksiglist.h $(incdir)/sudo_compat.h $(top_builddir)/config.h
+-	$(CC) $(CPPFLAGS) $(CFLAGS) $(srcdir)/mksiglist.c -o $@
++	gcc $(CPPFLAGS) $(CFLAGS) $(srcdir)/mksiglist.c -o $@
+ 
+ mksigname: $(srcdir)/mksigname.c $(srcdir)/mksigname.h $(incdir)/sudo_compat.h $(top_builddir)/config.h
+-	$(CC) $(CPPFLAGS) $(CFLAGS) $(srcdir)/mksigname.c -o $@
++	gcc $(CPPFLAGS) $(CFLAGS) $(srcdir)/mksigname.c -o $@
+ 
+ $(srcdir)/mksiglist.h: $(srcdir)/siglist.in
+ 	@if [ -n "$(DEVEL)" ]; then \
