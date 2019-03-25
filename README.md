@@ -30,6 +30,8 @@ Support:
     Texinfo-4.13
     u-boot-tools
     device-tree-compiler
+    bison
+    flex
 ```sh
 # Test if the host system satisfies all the requirements
 cat > version-check.sh << "EOF"
