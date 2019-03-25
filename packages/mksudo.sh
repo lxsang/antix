@@ -13,7 +13,7 @@ set +e
 rm -rf sudo-1.8.25
 tar xvf sudo-1.8.25.tar.gz
 cd sudo-1.8.25
-rm -f /lib/ld-musl-armhf.so.1
+#rm -f /lib/ld-musl-armhf.so.1
 #ln -s ${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/libc.so /lib/ld-musl-armhf.so.1
 
 set -e
