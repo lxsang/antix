@@ -7,7 +7,8 @@ echo ${CC}
 cd ${ANTIX_BASE}/source
 if [ ! -f "dropbear-2017.75.tar.bz2" ]; then
     # download it
-    wget https://matt.ucc.asn.au/dropbear/dropbear-2017.75.tar.bz2 
+    wget https://matt.ucc.asn.au/dropbear/releases/dropbear-2017.75.tar.bz2
+    #https://matt.ucc.asn.au/dropbear/dropbear-2017.75.tar.bz2 
     # the 2018 version does not work proprely on raspberry pi zeo
     # so we just get the older verion 2017.75
     #https://matt.ucc.asn.au/dropbear/dropbear-2018.76.tar.bz2
