@@ -15,7 +15,7 @@ cd packages
 # option:
 # ./mkbash.sh
 ./mksqlite3.sh
-./mkopenssl.sh
+./mklibssl.sh
 ./mkapk.sh
 ./mkantd.sh
 sudo ./mksudo.sh
