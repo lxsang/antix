@@ -1,0 +1,11 @@
+--- a/config.sub	2019-04-03 19:04:51.307702398 +0200
++++ b/config.sub	2019-04-03 19:04:44.747702215 +0200
+@@ -1140,7 +1140,7 @@
+ 	      | -storm-chaos* | -tops10* | -tenex* | -tops20* | -its* \
+ 	      | -os2* | -vos* | -palmos* | -uclinux* | -nucleus* \
+ 	      | -morphos* | -superux* | -rtmk* | -rtmk-nova* | -windiss* \
+-	      | -powermax* | -dnix* | -nx6 | -nx7 | -sei*)
++	      | -powermax* | -dnix* | -nx6 | -nx7 | -sei*| -musl*)
+ 	# Remember, each alternative MUST END IN *, to match a version number.
+ 		;;
+ 	-qnx*)
