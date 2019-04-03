@@ -10,11 +10,10 @@ if [ ! -d "avrdude-6.3" ]; then
     git clone https://github.com/arie-g/avrdude-6.3
     
 fi
-if [ ! -f "avrdude6.3.patch" ]; then
-    wget https://github.com/lxsang/antix/blob/master/packages/avrdude6.3.patch
-fi
-
 cd avrdude-6.3
+if [ ! -f "avrdude6.3.patch" ]; then
+    wget https://raw.githubusercontent.com/lxsang/antix/master/packages/avrdude6.3.patch
+
 # patch it
  patch -Np1 -i avrdude6.3.patch 
 # now configure the code
