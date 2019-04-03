@@ -11,7 +11,7 @@ if [ ! -d "avrdude-6.3" ]; then
     
 fi
 if [ ! -f "avrdude6.3.patch" ]; then
-    wget https://github.com/lxsang/antix/raw/master/avrdude6.3.patch
+    wget https://github.com/lxsang/antix/blob/master/packages/avrdude6.3.patch
 fi
 
 cd avrdude-6.3
