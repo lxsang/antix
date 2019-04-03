@@ -19,3 +19,9 @@ cd packages
 ./mkapk.sh
 ./mkantd.sh
 sudo ./mksudo.sh
+# compreess: sudo tar jcvf
+# xtract: sudo tar xvpf 
+# chown -Rv 0:0 ./
+#chgrp -v 13 ./var/log/lastlog
+#mknod -m 0666 ./dev/null c 1 3
+#mknod -m 0600 ./dev/console c 5 1

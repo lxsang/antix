@@ -17,11 +17,15 @@ cd ${dir}
     --host=${ANTIX_TARGET}\
      --disable-openssl-version-check \
      --enable-shared --disable-static \
-     --enable-libbind --disable-atomic \
+      --disable-atomic \
      --disable-linux-caps \
+     --with-openssl=${ANTIX_TOOLS}/${ANTIX_TARGET}\
+     --without-libxml2\
+     BUILD_CC=gcc\
      --enable-threads 
    
 make -j8
+     
 make install
 
 #cp -avrf ${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/libharfbuzz*.so* ${ANTIX_ROOT}/usr/lib
