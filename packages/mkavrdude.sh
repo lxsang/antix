@@ -5,24 +5,18 @@ set -e
 . ../env.sh
 . ../toolchain.sh
 cd ${ANTIX_BASE}/source
-if [ ! -d "avrdude-6.3" ]; then
+if [ ! -d "avrdude" ]; then
     # download it
-    git clone https://github.com/arie-g/avrdude-6.3
-    
+    git clone https://github.com/sigmike/avrdude
+    cd avrdude
+else
+    cd avrdude
 fi
-cd avrdude-6.3
-if [ ! -f "avrdude6.3.patch" ]; then
-    wget https://raw.githubusercontent.com/lxsang/antix/master/packages/avrdude6.3.patch
-
-# patch it
- patch -Np1 -i avrdude6.3.patch 
 # now configure the code
 ./bootstrap
 ./configure \
     --build=${ANTIX_HOST}\
-    --host=${ANTIX_TARGET}\
-    --enable-linuxgpio
-exit 0
+    --host=${ANTIX_TARGET}
 make clean
 make
 cp -av avrdude ${ANTIX_ROOT}/usr/bin/
