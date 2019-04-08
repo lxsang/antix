@@ -45,6 +45,7 @@ sed -i -E "s/\-mthumb//" platforms/linux/arm.toolchain.cmake
 rm -rf build
 mkdir build
 cd build
+ARCH=$(echo ${MACHTYPE} | sed 's/-.*//')
 cmake  \
     -D BUILD_opencv_python3=ON \
     -D HAVE_opencv_python3=ON \
@@ -55,7 +56,7 @@ cmake  \
     -D PYTHON_DEFAULT_EXECUTABLE=$(which python3.7) \
     -D PYTHON3_INCLUDE_PATH=${ANTIX_TOOLS}/${ANTIX_TARGET}/include/python3.7m \
     -D PYTHON3_INCLUDE_DIR=${ANTIX_TOOLS}/${ANTIX_TARGET}/include/python3.7m \
-    -D PYTHON3_NUMPY_INCLUDE_DIRS=${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/python3.7/site-packages/numpy-1.17.0.dev0+c1bf6a6-py3.7-linux-x86_64.egg/numpy/core/include/ \
+    -D PYTHON3_NUMPY_INCLUDE_DIRS=${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/python3.7/site-packages/numpy-1.17.0.dev0+c1bf6a6-py3.7-linux-${ARCH}.egg/numpy/core/include/ \
     -D OPENCV_PYTHON3_INSTALL_PATH=${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/python3.7/site-packages \
     -D CMAKE_TOOLCHAIN_FILE=../platforms/linux/arm-musleabi.toolchain.cmake \
     -D OPENCV_EXTRA_MODULES_PATH=../../opencv_contrib/modules \
@@ -73,7 +74,7 @@ while true; do
         * ) echo "Please answer yes or no.";;
     esac
 done
-ARCH=$(echo ${MACHTYPE} | sed 's/-.*//')
+
 cp -arfv install/lib/* ${ANTIX_ROOT}/usr/lib/
 cp -arfv ${ANTIX_TOOLS}/${ANTIX_TARGET}/lib/python3.7/site-packages/cv2.cpython-37m-$ARCH-linux-gnu.so \
     ${ANTIX_ROOT}/usr/lib/python3.7/site-packages/cv2.so
