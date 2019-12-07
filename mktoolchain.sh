@@ -40,6 +40,7 @@ rm -rf binutils-build binutils-2.27
 cd ${ANTIX_BASE}/source
 tar xvf gcc-6.2.0.tar.bz2
 cd gcc-6.2.0
+patch -Np1 -i ../gcc_6.2.0.ubsan.patch
 tar xf ../mpfr-3.1.4.tar.bz2
 mv -v mpfr-3.1.4 mpfr
 tar xf ../gmp-6.1.1.tar.bz2
@@ -155,6 +156,8 @@ fi
 cd ${ANTIX_BASE}/source
 tar xvf gcc-6.2.0.tar.bz2
 cd gcc-6.2.0
+#patch
+patch -Np1 -i ../gcc_6.2.0.ubsan.patch
 tar xf ../mpfr-3.1.4.tar.bz2
 mv -v mpfr-3.1.4 mpfr
 tar xf ../gmp-6.1.1.tar.bz2

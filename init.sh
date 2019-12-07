@@ -35,5 +35,6 @@ test ! -f 0029-ethernet-add-sun8i-emac-driver.patch && wget https://raw.githubus
 test ! -f sun8i-h3-nanopi-neo.patch && wget https://github.com/lxsang/antix/raw/master/sun8i-h3-nanopi-neo.patch
 test ! -f sun8i-h3.patch && wget https://github.com/lxsang/antix/raw/master/sun8i-h3.patch
 test ! -f rpiv1_spi.patch && wget https://raw.githubusercontent.com/lxsang/antix/master/rpiv1_spi.patch
+test ! -f gcc_6.2.0.ubsan.patch && wget https://raw.githubusercontent.com/lxsang/antix/master/gcc_6.2.0.ubsan.patch
 # other packag
 set -e
