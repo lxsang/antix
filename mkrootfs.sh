@@ -16,9 +16,11 @@ cd packages
 # ./mkbash.sh
 ./mksqlite3.sh
 ./mklibssl.sh
-#./mkapk.sh
-#./mkantd.sh
+./mklibnl.sh
+./mkwpasupplicant.sh
 sudo ./mksudo.sh
+./mklibffi.sh
+./mkantd.sh
 # compreess: sudo tar jcvf
 # xtract: sudo tar xvpf 
 # chown -Rv 0:0 ./
